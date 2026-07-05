@@ -33,10 +33,6 @@
   function accentRGBA(alpha) {
     return `rgba(${accentRGB.r}, ${accentRGB.g}, ${accentRGB.b}, ${alpha})`;
   }
-  function accentShade(factor, alpha) {
-    const clamp = (v) => Math.max(0, Math.min(255, Math.round(v * factor)));
-    return `rgba(${clamp(accentRGB.r)}, ${clamp(accentRGB.g)}, ${clamp(accentRGB.b)}, ${alpha})`;
-  }
 
   // ===== PRELOADER =====
   window.addEventListener("load", () => {
@@ -142,82 +138,26 @@
       ctx.rotate((plane.angle * Math.PI) / 180);
       ctx.scale(CURSOR_SCALE, CURSOR_SCALE);
 
-      if (hovering) {
-        ctx.strokeStyle = accentRGBA(0.85);
-        ctx.lineWidth = 1.3;
-        ctx.beginPath();
-        ctx.arc(0, 0, 16, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(-22, 0);
-        ctx.lineTo(-10, 0);
-        ctx.moveTo(22, 0);
-        ctx.lineTo(10, 0);
-        ctx.moveTo(0, -22);
-        ctx.lineTo(0, -10);
-        ctx.moveTo(0, 22);
-        ctx.lineTo(0, 10);
-        ctx.stroke();
-      }
-
-      // These points are NOT hand-drawn symmetric shapes with different fill
-      // colors - they're the actual output of projecting a symmetric 3D
-      // paper-plane model (nose/tail on the centerline, wings drooping down
-      // and out from the fold) through a real isometric rotation (yaw +
-      // pitch, corner-of-a-cube style), then re-orienting so the nose sits
-      // on the local +x axis for the banking rotation below. Because the
-      // viewing corner isn't on the plane's own mirror plane, the two wings
-      // come out genuinely different sizes - that's what a corner view does
-      // to a symmetric object, not an artifact.
-      const litFace = hovering ? "#ffffff" : accentShade(1, 0.95);
-      const shadeFace = hovering
-        ? "rgba(255, 255, 255, 0.62)"
-        : accentShade(0.5, 0.95);
-      const edgeStroke = hovering ? accentRGBA(0.9) : accentShade(0.4, 0.9);
-      const ridgeHighlight = hovering
-        ? "rgba(255, 255, 255, 0.95)"
-        : accentShade(1.7, 0.55);
-
-      // far panel (right wing - swept back further by the corner projection)
+      // Symmetric top-down dart with a tail spike, single flat fill.
+      // No shading panels, no isometric tilt - reverted per feedback.
+      // Hover state is color-only now (no reticle overlay).
       ctx.beginPath();
       ctx.moveTo(10, 0); // nose
-      ctx.lineTo(-5.07, -2.81); // right wingtip
-      ctx.lineTo(-5.92, -1.24); // right notch
-      ctx.lineTo(-8.79, -0.68); // tail
+      ctx.lineTo(-4, 5.5); // right wingtip
+      ctx.lineTo(-5.5, 1.5); // right notch, cutting in toward the tail
+      ctx.lineTo(-9, 0); // tail spike
+      ctx.lineTo(-5.5, -1.5); // left notch
+      ctx.lineTo(-4, -5.5); // left wingtip
       ctx.closePath();
-      ctx.fillStyle = shadeFace;
+      ctx.fillStyle = hovering ? "#ffffff" : accentRGBA(0.95);
       ctx.fill();
 
-      // near panel (left wing - foreshortened toward the viewer)
-      ctx.beginPath();
-      ctx.moveTo(10, 0); // nose
-      ctx.lineTo(-8.79, -0.68); // tail
-      ctx.lineTo(-4.88, 0.58); // left notch
-      ctx.lineTo(-1.25, 3.85); // left wingtip
-      ctx.closePath();
-      ctx.fillStyle = litFace;
-      ctx.fill();
-
-      // crisp outer edge
-      ctx.beginPath();
-      ctx.moveTo(10, 0);
-      ctx.lineTo(-5.07, -2.81);
-      ctx.lineTo(-5.92, -1.24);
-      ctx.lineTo(-8.79, -0.68);
-      ctx.lineTo(-4.88, 0.58);
-      ctx.lineTo(-1.25, 3.85);
-      ctx.closePath();
-      ctx.strokeStyle = edgeStroke;
-      ctx.lineWidth = 0.6;
-      ctx.stroke();
-
-      // center fold ridge, nose to tail (not perfectly horizontal - a real
-      // corner projection tilts it slightly, which is correct, not a bug)
+      // center fold crease, nose to tail
       ctx.beginPath();
       ctx.moveTo(9, 0);
-      ctx.lineTo(-8, -0.62);
-      ctx.strokeStyle = ridgeHighlight;
-      ctx.lineWidth = 0.8;
+      ctx.lineTo(-8, 0);
+      ctx.strokeStyle = "rgba(10, 14, 23, 0.25)";
+      ctx.lineWidth = 0.6;
       ctx.stroke();
 
       ctx.restore();
