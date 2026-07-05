@@ -73,7 +73,7 @@
     resize();
 
     const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const plane = { x: pointer.x, y: pointer.y, angle: -45 };
+    const plane = { x: pointer.x, y: pointer.y, angle: -45, hoverScale: 1 };
     let trail = [];
     let hovering = false;
     let overField = false;
@@ -120,6 +120,10 @@
         plane.angle += diff * (prefersReducedMotion ? 1 : 0.18);
       }
 
+      const targetHoverScale = hovering ? 1.25 : 1;
+      plane.hoverScale +=
+        (targetHoverScale - plane.hoverScale) * (prefersReducedMotion ? 1 : 0.2);
+
       if (!prefersReducedMotion) {
         trail.push({ x: plane.x, y: plane.y, life: 1 });
         if (trail.length > 14) trail.shift();
@@ -136,11 +140,14 @@
       ctx.save();
       ctx.translate(plane.x, plane.y);
       ctx.rotate((plane.angle * Math.PI) / 180);
-      ctx.scale(CURSOR_SCALE, CURSOR_SCALE);
+      ctx.scale(
+        CURSOR_SCALE * plane.hoverScale,
+        CURSOR_SCALE * plane.hoverScale,
+      );
 
       // Symmetric top-down dart with a tail spike, single flat fill.
       // No shading panels, no isometric tilt - reverted per feedback.
-      // Hover state is color-only now (no reticle overlay).
+      // Hover state: color change + slight size bump, no reticle overlay.
       ctx.beginPath();
       ctx.moveTo(10, 0); // nose
       ctx.lineTo(-4, 5.5); // right wingtip

@@ -58,15 +58,27 @@ body {
     color 0.4s;
 }
 
-/* Custom cursor only replaces the system cursor on devices with a real mouse */
+/* Custom cursor only replaces the system cursor on devices with a real mouse.
+   The !important is needed here specifically: several elements (.btn,
+   .hamburger, .scroll-top-btn, .modal-close, etc., plus native <a> tags)
+   set cursor:pointer directly, which wins over an inherited cursor:none
+   from body regardless of that rule's specificity. This is the one place
+   that's meant to always take precedence, so every element is covered
+   without having to hunt down and patch each cursor:pointer individually. */
 @media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
   }
+  body *,
+  body *::before,
+  body *::after {
+    cursor: none !important;
+  }
   body.cursor-native,
+  body.cursor-native *,
   .form-group input,
   .form-group textarea {
-    cursor: text;
+    cursor: text !important;
   }
 }
 
