@@ -20,15 +20,30 @@
     return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
   }
 
+  function currentHoverFillColor() {
+    // White reads fine on the dark theme's near-black background, but
+    // disappears on the light theme's near-white one - so on light theme,
+    // use its own text-ink color instead of hardcoded white.
+    const isLightTheme = document.body.classList.contains("light-theme");
+    if (!isLightTheme) return "#ffffff";
+    return (
+      getComputedStyle(document.body)
+        .getPropertyValue("--text-primary")
+        .trim() || "#1a1e2b"
+    );
+  }
+
   let accentRGB = hexToRgb(
     getComputedStyle(document.body).getPropertyValue("--accent").trim() ||
       "#4dabf7",
   );
+  let hoverFillColor = currentHoverFillColor();
   function refreshAccentColor() {
     accentRGB = hexToRgb(
       getComputedStyle(document.body).getPropertyValue("--accent").trim() ||
         "#4dabf7",
     );
+    hoverFillColor = currentHoverFillColor();
   }
   function accentRGBA(alpha) {
     return `rgba(${accentRGB.r}, ${accentRGB.g}, ${accentRGB.b}, ${alpha})`;
@@ -156,7 +171,7 @@
       ctx.lineTo(-5.5, -1.5); // left notch
       ctx.lineTo(-4, -5.5); // left wingtip
       ctx.closePath();
-      ctx.fillStyle = hovering ? "#ffffff" : accentRGBA(0.95);
+      ctx.fillStyle = hovering ? hoverFillColor : accentRGBA(0.95);
       ctx.fill();
 
       // center fold crease, nose to tail
@@ -248,22 +263,6 @@
     }
   }
   initRevealAnimations();
-
-  // ===== SKILL BARS ANIMATION =====
-  const skillBars = document.querySelectorAll(".skill-progress");
-  const skillObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-          bar.style.width = bar.style.getPropertyValue("--progress");
-          skillObserver.unobserve(bar);
-        }
-      });
-    },
-    { threshold: 0.3 },
-  );
-  skillBars.forEach((bar) => skillObserver.observe(bar));
 
   // ===== TYPEWRITER EFFECT (Typed.js, with homemade fallback) =====
   const words = [
@@ -395,78 +394,6 @@
   });
   scrollTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // ===== PROJECT MODAL =====
-  const modal = document.getElementById("projectModal");
-  const modalClose = document.getElementById("modalClose");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalTags = document.getElementById("modalTags");
-  const modalDesc = document.getElementById("modalDescription");
-  const modalDetails = document.getElementById("modalDetails");
-
-  const projectData = {
-    1: {
-      title: "UAV Design Optimization",
-      tags: ["OpenFOAM", "Python", "CAD"],
-      desc: "Full aerodynamic optimization of a fixed-wing UAV using parametric sweeps and surrogate modeling.",
-      details:
-        "Used OpenFOAM for RANS simulations, Python for automation, and CAD for geometry morphing. Achieved 12% improvement in L/D ratio.",
-    },
-    2: {
-      title: "CFD Analysis of Supersonic Flow",
-      tags: ["ANSYS Fluent", "MATLAB"],
-      desc: "Numerical simulation of supersonic flow over a diamond airfoil.",
-      details:
-        "Captured shock waves and expansion fans. Validated against experimental schlieren data.",
-    },
-    3: {
-      title: "Natural Convection Simulation",
-      tags: ["OpenFOAM", "Python"],
-      desc: "CFD simulation of natural convection in a differentially heated cavity.",
-      details:
-        "Analyzed Rayleigh number effects from 10^3 to 10^6. Developed automated post-processing pipeline.",
-    },
-    4: {
-      title: "Rocket Nozzle Flow Visualization",
-      tags: ["ANSYS Fluent", "MATLAB"],
-      desc: "Simulation of compressible flow through a converging-diverging nozzle.",
-      details:
-        "Visualized Mach disk formation and analyzed thrust coefficient variations.",
-    },
-    5: {
-      title: "ESP32 Wireless Micropad",
-      tags: ["ESP32", "C++", "IoT"],
-      desc: "Wireless sensor micropad for wind tunnel data acquisition.",
-      details:
-        "Real-time telemetry of pressure and temperature. Used in undergraduate wind tunnel lab.",
-    },
-    6: {
-      title: "Schlieren Flow Visualization",
-      tags: ["Optics", "MATLAB"],
-      desc: "Design and construction of a Schlieren imaging setup.",
-      details:
-        "Visualized compressible flow over a cylinder. Image processing in MATLAB for density gradient quantification.",
-    },
-  };
-
-  document.querySelectorAll(".btn-project-detail").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const projectId = btn.getAttribute("data-project");
-      const data = projectData[projectId];
-      modalTitle.textContent = data.title;
-      modalTags.innerHTML = data.tags
-        .map((tag) => `<span class="project-tag">${tag}</span>`)
-        .join("");
-      modalDesc.textContent = data.desc;
-      modalDetails.textContent = data.details;
-      modal.classList.add("active");
-    });
-  });
-
-  modalClose.addEventListener("click", () => modal.classList.remove("active"));
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.classList.remove("active");
   });
 
   // ===== CONTACT FORM (prevent default) =====

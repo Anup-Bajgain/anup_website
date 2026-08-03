@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aircraft Preliminary Design | Aerospace Engineer Portfolio</title>
+  <link rel="icon" href="../favicons/aircraft-preliminary-design.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="dark-theme">
+
+  <a href="../index.html#projects" class="detail-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+
+  <header class="detail-cover" style="background: linear-gradient(135deg, #1a0d1a 0%, #281b28 40%, #160a16 100%);">
+    <svg viewBox="0 0 80 60" width="70" height="53">
+      <path d="M10 40 C25 20, 55 10, 70 35" fill="none" stroke="rgba(200,140,255,0.6)" stroke-width="2" />
+      <path d="M10 44 C25 24, 55 14, 70 39" fill="none" stroke="rgba(200,160,255,0.3)" stroke-width="1" />
+    </svg>
+    <h1 class="detail-cover-title">Aircraft Preliminary Design</h1>
+  </header>
+
+  <main class="detail-content">
+    <p>Nimbus is a fixed-wing, autonomous electric aircraft designed for crop dusting — spraying farmland with more
+      precision and lower running costs than fuel-powered dusters, aimed at the medium-sized farms current options don't
+      serve well.</p>
+
+    <div class="glass-card">
+      <h2>Objective</h2>
+      <p>Design a fixed-wing, autonomous electric crop-duster meeting the following mission requirements:</p>
+      <ul>
+        <li>Hopper capacity: 200 L</li>
+        <li>Endurance: 35 minutes</li>
+        <li>Minimum take-off distance: 300 m</li>
+        <li>Cruise velocity: 35 m/s</li>
+        <li>Working velocity: 30 m/s</li>
+      </ul>
+    </div>
+
+    <div class="glass-card">
+      <h2>Approach</h2>
+      <ul>
+        <li>Defined a multi-segment mission profile (climb–cruise–descent) and sized the aircraft using a power-loading
+          vs. wing-loading matching plot and V-n flight envelope</li>
+        <li>Selected a high-wing layout: NACA 2412 wing airfoil, NACA 0012 horizontal-stabilizer airfoil, NACA 2412
+          vertical-stabilizer airfoil</li>
+        <li>Verified stability and handling via dynamic-mode analysis (spiral, short-period, phugoid, dutch roll),
+          CG-travel/neutral-point analysis, stall/climb/descent characteristics, take-off/landing performance, and a
+          Cooper–Harper handling test</li>
+      </ul>
+      <figure class="project-image">
+        <img src="images/APD_isometric.PNG" alt="Nimbus three-view and isometric render">
+        <figcaption>isometric views of the airframe</figcaption>
+      </figure>
+    </div>
+
+    <div class="glass-card">
+      <h2>Key Results</h2>
+      <ul>
+        <li>Final design: MTOW 576 kg, empty weight 293 kg, 83 kg Li-ion battery pack (265 Wh/kg)</li>
+        <li>Cruise speed 40 m/s (max 48 m/s) at a 500 m cruise altitude</li>
+        <li>Take-off distance 460 m, landing distance 390 m</li>
+        <li>14 m swath width, work rate of Rs 5/Ha, 60 Ha total coverage</li>
+        <li>Rated 4 on the Modified Cooper–Harper scale — moderate pilot workload, with some drift in disturbances
+          requiring pilot compensation</li>
+        <li>Concluded the aircraft handled reliably and adapted well, positioning Nimbus to fill the gap between large
+          fuel-powered dusters and the shortage of medium-farm options</li>
+      </ul>
+      <figure class="project-image">
+        <img src="images/APD_Vn.png" alt="Wing loading matching plot and V-n diagram">
+        <figcaption>Matching plot and V-n flight envelope used for sizing</figcaption>
+      </figure>
+    </div>
+
+    <div class="glass-card">
+      <h2>Tools &amp; Methods</h2>
+      <div class="project-tags">
+        <span class="project-tag">NACA Airfoils</span>
+        <span class="project-tag">Matching Plot &amp; Flight Envelope</span>
+        <span class="project-tag">Dynamic Stability Analysis</span>
+        <span class="project-tag">Handling Qualities (Cooper–Harper)</span>
+      </div>
+    </div>
+
+    <a href="reports/APD.pdf" download class="btn btn-primary">
+      <span>Download Report</span>
+      <i class="fa-solid fa-download"></i>
+    </a>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <span class="logo-icon"><i class="fa-solid fa-plane"></i></span>
+        <span>AE Portfolio</span>
+      </div>
+      <p class="footer-text">Designed &amp; Built with precision. &copy; 2026 Anup Bajgain</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>

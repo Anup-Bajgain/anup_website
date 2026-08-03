@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Year Project | Aerospace Engineer Portfolio</title>
+  <link rel="icon" href="../favicons/final-year-project.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="dark-theme">
+
+  <a href="../index.html#projects" class="detail-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+
+  <header class="detail-cover" style="background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #0a1628 100%);">
+    <svg viewBox="0 0 80 60" width="70" height="53">
+      <path d="M10 45 L35 10 L60 35 L70 20" fill="none" stroke="rgba(100,180,255,0.6)" stroke-width="2" />
+      <path d="M10 48 L35 14 L60 38 L70 24" fill="none" stroke="rgba(100,200,255,0.3)" stroke-width="1" />
+    </svg>
+    <h1 class="detail-cover-title">Final Year Project</h1>
+  </header>
+
+  <main class="detail-content">
+
+    <div class="glass-card">
+      <p>This project built an experimental rig that fires a high-speed jet of air along a heated metal plate, then used
+        a color-based optical technique to measure how the air's density changes near the hot surface, benchmarked
+        against CFD simulations.</p>
+    </div>
+
+    <div class="glass-card">
+      <h2>Objective</h2>
+      <ul>
+        <li>Design and characterize a compressible jet facility — a converging nozzle paired with a
+          temperature-controlled flat plate.</li>
+        <li>Calibrate a Rainbow Schlieren Deflectometry (RSD) system to extract quantitative density-gradient, density,
+          and temperature fields for the wall jet.</li>
+        <li>Run 2D CFD simulations of the same flow and compare them with the experimental data.</li>
+        <li>Develop and validate pyrsd, an open-source Python library for RSD processing.</li>
+      </ul>
+    </div>
+
+    <div class="glass-card">
+      <h2>Approach</h2>
+      <ul>
+        <li>3D-printed a converging nozzle (12 mm × 5 mm exit) fed by a compressor, producing a high-subsonic jet (up to
+          M ≈ 0.97) over a Peltier-heated, PID-controlled metal plate held at 40°C and 60°C.</li>
+        <li>Used a Z-type double-mirror schlieren system with custom rainbow color filters, fabricated on E6 slide film
+          after early digitally-printed versions showed poor transmissivity.</li>
+        <li>Built pyrsd, a Python library covering hue calibration, per-frame displacement extraction, ensemble
+          averaging, and density reconstruction via 1D integration and 2D Poisson inversion.</li>
+        <li>Validated the pipeline against natural convection from the heated plate before applying it to the wall jet,
+          then compared results with 2D RANS CFD (ANSYS Fluent, k-ω SST).</li>
+      </ul>
+    </div>
+
+    <div class="glass-card">
+      <h2>Key Results</h2>
+      <ul>
+        <li>RSD recovered the plate's known surface temperature from natural-convection images to within ~0.3–1% of the
+          thermocouple setpoint, validating the pipeline.</li>
+        <li>Peak density gradient scaled with wall temperature: ≈0.016 kg/m³/mm at 40°C versus ≈0.026 kg/m³/mm at 60°C
+          in the natural-convection case.</li>
+        <li>Schlieren imagery confirmed nozzle choking above ~1.9 bar gauge, matching the predicted critical pressure
+          ratio, with oblique shock structures visible beyond that point.</li>
+        <li>CFD (k-ω SST) over-predicted near-wall density gradients relative to RSD by roughly an order of magnitude
+          near the nozzle exit, narrowing further downstream.</li>
+        <li>pyrsd was released as an open-source library — the report notes no equivalent open, documented RSD
+          processing tool existed previously.</li>
+      </ul>
+    </div>
+
+    <div class="glass-card">
+      <h2>Tools &amp; Technologies</h2>
+      <div class="project-tags">
+        <span class="project-tag">pyrsd</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">NumPy</span>
+        <span class="project-tag">SciPy</span>
+        <span class="project-tag">Matplotlib</span>
+        <span class="project-tag">ANSYS Fluent</span>
+        <span class="project-tag">OpenFOAM</span>
+        <span class="project-tag">SOLIDWORKS</span>
+        <span class="project-tag">Arduino</span>
+        <span class="project-tag">3D Printing</span>
+      </div>
+      <a href="reports/final-year-project.pdf" download class="btn btn-primary">
+        <span>Download Full Report</span>
+        <i class="fa-solid fa-download"></i>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <span class="logo-icon"><i class="fa-solid fa-plane"></i></span>
+        <span>AE Portfolio</span>
+      </div>
+      <p class="footer-text">Designed &amp; Built with precision. &copy; 2026 Anup Bajgain</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
