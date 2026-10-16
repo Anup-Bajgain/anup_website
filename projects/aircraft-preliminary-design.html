@@ -3,110 +3,230 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aircraft Preliminary Design | Aerospace Engineer Portfolio</title>
-  <link rel="icon" href="../favicons/aircraft-preliminary-design.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="APD: Nimbus, a conceptual electric agricultural UAV. Explore the mission, sizing, aerodynamic modeling, X-Plane flight tests, and the takeoff-distance gap.">
+  <title>APD · Nimbus Agricultural UAV | Anup Bajgain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/apd.css">
+  <link rel="stylesheet" href="../css/project-shared.css">
 </head>
 
-<body class="dark-theme">
-
-  <a href="../index.html#projects" class="detail-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
-
-  <header class="detail-cover" style="background: linear-gradient(135deg, #1a0d1a 0%, #281b28 40%, #160a16 100%);">
-    <img src="images/aircraft-preliminary-design-cover.jpg" alt="Aircraft Preliminary Design" class="detail-cover-photo" loading="lazy" onerror="this.style.display='none'">
-    <div class="detail-cover-overlay"></div>
-    <svg viewBox="0 0 80 60" width="70" height="53">
-      <path d="M10 40 C25 20, 55 10, 70 35" fill="none" stroke="rgba(200,140,255,0.6)" stroke-width="2" />
-      <path d="M10 44 C25 24, 55 14, 70 39" fill="none" stroke="rgba(200,160,255,0.3)" stroke-width="1" />
-    </svg>
-    <h1 class="detail-cover-title">Aircraft Preliminary Design</h1>
+<body>
+  <a class="skip-link" href="#overview">Skip to project</a>
+  <header class="site-bar">
+    <a class="project-back-link" href="../index.html#projects">← Back to Portfolio</a>
+    <nav aria-label="Project navigation">
+      <a href="#mission">Mission</a>
+      <a href="#design">Design</a>
+      <a href="#validation">Simulation</a>
+      <a href="#findings">Results</a>
+      <a href="#gallery">Analysis</a>
+    </nav>
   </header>
 
-  <main class="detail-content">
-    <p>Nimbus is a fixed-wing, autonomous electric aircraft designed for crop dusting — spraying farmland with more
-      precision and lower running costs than fuel-powered dusters, aimed at the medium-sized farms current options don't
-      serve well.</p>
-
-    <div class="glass-card">
-      <h2>Objective</h2>
-      <p>Design a fixed-wing, autonomous electric crop-duster meeting the following mission requirements:</p>
-      <ul>
-        <li>Hopper capacity: 200 L</li>
-        <li>Endurance: 35 minutes</li>
-        <li>Minimum take-off distance: 300 m</li>
-        <li>Cruise velocity: 35 m/s</li>
-        <li>Working velocity: 30 m/s</li>
-      </ul>
-    </div>
-
-    <div class="glass-card">
-      <h2>Approach</h2>
-      <ul>
-        <li>Defined a multi-segment mission profile (climb–cruise–descent) and sized the aircraft using a power-loading
-          vs. wing-loading matching plot and V-n flight envelope</li>
-        <li>Selected a high-wing layout: NACA 2412 wing airfoil, NACA 0012 horizontal-stabilizer airfoil, NACA 2412
-          vertical-stabilizer airfoil</li>
-        <li>Verified stability and handling via dynamic-mode analysis (spiral, short-period, phugoid, dutch roll),
-          CG-travel/neutral-point analysis, stall/climb/descent characteristics, take-off/landing performance, and a
-          Cooper–Harper handling test</li>
-      </ul>
-      <figure class="project-image">
-        <img src="images/APD_isometric.PNG" alt="Nimbus three-view and isometric render">
-        <figcaption>isometric views of the airframe</figcaption>
-      </figure>
-    </div>
-
-    <div class="glass-card">
-      <h2>Key Results</h2>
-      <ul>
-        <li>Final design: MTOW 576 kg, empty weight 293 kg, 83 kg Li-ion battery pack (265 Wh/kg)</li>
-        <li>Cruise speed 40 m/s (max 48 m/s) at a 500 m cruise altitude</li>
-        <li>Take-off distance 460 m, landing distance 390 m</li>
-        <li>14 m swath width, work rate of Rs 5/Ha, 60 Ha total coverage</li>
-        <li>Rated 4 on the Modified Cooper–Harper scale — moderate pilot workload, with some drift in disturbances
-          requiring pilot compensation</li>
-        <li>Concluded the aircraft handled reliably and adapted well, positioning Nimbus to fill the gap between large
-          fuel-powered dusters and the shortage of medium-farm options</li>
-      </ul>
-      <figure class="project-image">
-        <img src="images/APD_Vn.png" alt="Wing loading matching plot and V-n diagram">
-        <figcaption>Matching plot and V-n flight envelope used for sizing</figcaption>
-      </figure>
-    </div>
-
-    <div class="glass-card">
-      <h2>Tools &amp; Methods</h2>
-      <div class="project-tags">
-        <span class="project-tag">NACA Airfoils</span>
-        <span class="project-tag">Matching Plot &amp; Flight Envelope</span>
-        <span class="project-tag">Dynamic Stability Analysis</span>
-        <span class="project-tag">Handling Qualities (Cooper–Harper)</span>
+  <main id="overview">
+    <section class="hero" aria-labelledby="project-title">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="status-dot"></span> APD / Aircraft preliminary design</span>
+        <h1 id="project-title">Nimbus<span class="title-period">.</span></h1>
+        <p class="hero-lead">An electric agricultural aircraft designed from the mission backwards.</p>
+        <p class="hero-detail">A fixed-wing crop-dusting UAV concept for medium-sized farms, taken from sizing
+          constraints through aerodynamic modeling and digital flight testing.</p>
+        <div class="hero-actions">
+          <a class="action primary" href="#mission">Explore the design <span aria-hidden="true">↘</span></a>
+          <a class="action secondary" href="reports/nimbus-poster.pdf" download>Download poster <span
+              aria-hidden="true">↓</span></a>
+        </div>
       </div>
+      <figure class="hero-visual">
+        <img src="images/apd/nimbus-hero.jpg"
+          alt="Concept rendering of the twin-motor Nimbus agricultural aircraft above a field" width="1600"
+          height="1067" fetchpriority="high">
+        <figcaption>Concept rendering · Nimbus airframe</figcaption>
+      </figure>
+      <div class="hero-index" aria-hidden="true">01 / 04 · Mission → Model → Verify → Refine</div>
+    </section>
+
+    <div class="fact-strip" aria-label="Aircraft design figures">
+      <div><span>Design mass</span><strong>576 <small>kg</small></strong><span>maximum takeoff weight</span></div>
+      <div><span>Wing span</span><strong>12 <small>m</small></strong><span>high-wing layout</span></div>
+      <div><span>Spray capacity</span><strong>200 <small>L</small></strong><span>mission requirement</span></div>
+      <div><span>Battery</span><strong>83 <small>kg</small></strong><span>lithium-ion design estimate</span></div>
     </div>
 
-    <a href="reports/APD.pdf" download class="btn btn-primary">
-      <span>Download Report</span>
-      <i class="fa-solid fa-download"></i>
-    </a>
+    <section id="mission" class="chapter chapter-intro" aria-labelledby="mission-title">
+      <div class="chapter-aside"><span class="chapter-number">01 / THE BRIEF</span><span class="aside-line"></span>
+      </div>
+      <div class="chapter-body">
+        <span class="kicker">Mission-led design</span>
+        <h2 id="mission-title">Start with the field, then size the aircraft.</h2>
+        <p class="large-copy">Nimbus was developed as an autonomous, battery-powered crop duster. Its design brief
+          called for a 200 L hopper, 35 minutes of endurance, a 300 m takeoff target, and 35 m/s cruise speed. The
+          airframe was sized around those requirements, then checked in aerodynamic software and a flight simulator.</p>
+        <div class="mission-grid">
+          <div><b>35 min</b><span>Endurance target</span></div>
+          <div><b>35 m/s</b><span>Cruise target</span></div>
+          <div><b>30 m/s</b><span>Working-speed target</span></div>
+          <div><b>300 m</b><span>Takeoff target</span></div>
+        </div>
+        <p class="fine-print">These are brief requirements, not demonstrated field performance. Results from the digital
+          flight test are shown below.</p>
+      </div>
+    </section>
+
+    <section id="design" class="chapter" aria-labelledby="design-title">
+      <div class="chapter-aside"><span class="chapter-number">02 / FORM &amp; SIZING</span><span
+          class="aside-line"></span></div>
+      <div class="chapter-body">
+        <span class="kicker">The aircraft</span>
+        <h2 id="design-title">A conventional layout shaped by tight constraints.</h2>
+        <p>A power-loading versus wing-loading matching plot balanced stall, climb, cruise, and takeoff requirements.
+          The chosen point was about 40.6 kg/m² wing loading. A maneuver-and-gust V–n envelope provided a structural
+          check.</p>
+        <div class="design-layout">
+          <div class="design-specs">
+            <div><span>01 / Wing</span>
+              <p>High-mounted NACA 2412; 12 m span, 12.569 m² area, 11.4 aspect ratio, 4° dihedral.</p>
+            </div>
+            <div><span>02 / Tail</span>
+              <p>NACA 0012 horizontal stabilizer and swept NACA 2412 vertical stabilizer.</p>
+            </div>
+            <div><span>03 / Propulsion</span>
+              <p>One motor on each wing, leaving the fuselage centerline available for the hopper.</p>
+            </div>
+            <div><span>04 / Configuration</span>
+              <p>Fixed tricycle undercarriage and a 576 kg maximum takeoff weight in the design estimate.</p>
+            </div>
+          </div>
+          <figure class="chart-card"><img src="images/APD_isometric.PNG"
+              alt="Isometric view of the Nimbus airframe design" loading="lazy">
+            <figcaption>Airframe geometry · project design view</figcaption>
+          </figure>
+        </div>
+        <div class="figure-pair">
+          <figure class="chart-card"><img src="images/apd/nimbus-matching-plot.svg"
+              alt="Power-loading versus wing-loading matching plot with the design point" loading="lazy">
+            <figcaption>Constraint matching · the design point sits near the stall and takeoff intersection.
+            </figcaption>
+          </figure>
+          <figure class="chart-card"><img src="images/apd/nimbus-vn-diagram-real.svg"
+              alt="Nimbus V–n maneuver and gust envelope" loading="lazy">
+            <figcaption>V–n envelope · maneuver and gust limits used for structural sizing.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="validation" class="chapter" aria-labelledby="validation-title">
+      <div class="chapter-aside"><span class="chapter-number">03 / DIGITAL VALIDATION</span><span
+          class="aside-line"></span></div>
+      <div class="chapter-body">
+        <span class="kicker">Two models, one aircraft</span>
+        <h2 id="validation-title">Aerodynamic estimates met a simulated flight test.</h2>
+        <p>XFLR5 supplied vortex-lattice lift and drag estimates and a neutral-point prediction. A matching aircraft
+          built in Plane Maker was then flown in X-Plane 12 to study trim, stability, handling, climb, and field
+          performance. OpenVSP was also part of the team's design toolset.</p>
+        <div class="validation-callout"><span>Neutral-point cross-check</span><strong>0.827 m <em>vs.</em> 0.854
+            m</strong>
+          <p>The flight-data estimate and XFLR5 result differed by roughly 3%. Both are modeling and simulation results,
+            not physical flight-test measurements.</p>
+        </div>
+        <div class="figure-pair">
+          <figure class="chart-card"><img src="images/apd/nimbus-xflr5-mesh.png"
+              alt="Nimbus aircraft geometry represented by an XFLR5 panel mesh" loading="lazy">
+            <figcaption>XFLR5 vortex-lattice model of the airframe.</figcaption>
+          </figure>
+          <figure class="chart-card"><img src="images/apd/nimbus-neutral-point-slope.svg"
+              alt="Neutral-point estimate extrapolated from simulated elevator trim data" loading="lazy">
+            <figcaption>Flight-data regression used to estimate the neutral point.</figcaption>
+          </figure>
+        </div>
+        <div class="tool-list" aria-label="Project tools"><span>X-Plane 12</span><span>Plane
+            Maker</span><span>OpenVSP</span><span>XFLR5</span></div>
+      </div>
+    </section>
+
+    <section id="findings" class="chapter findings-chapter" aria-labelledby="findings-title">
+      <div class="chapter-aside"><span class="chapter-number">04 / WHAT WE FOUND</span><span class="aside-line"></span>
+      </div>
+      <div class="chapter-body">
+        <span class="kicker">Simulation results</span>
+        <h2 id="findings-title">The aircraft flew in simulation. The runway target needs more work.</h2>
+        <div class="result-grid">
+          <div class="result good"><span>Cruise speed</span><strong>40 m/s</strong>
+            <p>Above the 35 m/s design target in simulation.</p>
+          </div>
+          <div class="result"><span>Handling rating</span><strong>4</strong>
+            <p>Modified Cooper–Harper scale; moderate pilot compensation.</p>
+          </div>
+          <div class="result warning"><span>Takeoff to 50 ft</span><strong>≈460 m</strong>
+            <p>About 160 m longer than the 300 m target.</p>
+          </div>
+          <div class="result"><span>Landing from 50 ft</span><strong>≈390 m</strong>
+            <p>Measured in the digital flight test.</p>
+          </div>
+        </div>
+        <p class="outcome-note">Phugoid, short-period, Dutch-roll, and spiral responses all converged in the simulated
+          tests. The takeoff-distance gap is the next design problem: revisit power and wing loading, then test the
+          revised configuration against the same mission brief.</p>
+        <div class="figure-pair">
+          <figure class="chart-card"><img src="images/apd/nimbus-takeoff-distance.svg"
+              alt="Simulated takeoff distance to 50 feet above ground level" loading="lazy">
+            <figcaption>Takeoff to 50 ft · approximately 460 m.</figcaption>
+          </figure>
+          <figure class="chart-card"><img src="images/apd/nimbus-landing-distance.svg"
+              alt="Simulated landing distance from 50 feet above ground level" loading="lazy">
+            <figcaption>Landing from 50 ft · approximately 390 m.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="appendix" aria-labelledby="gallery-title">
+      <div><span class="kicker">Explore the data</span>
+        <h2 id="gallery-title">Inside the flight-test analysis</h2>
+        <p>Selected plots from the Nimbus design and flight-dynamics work.</p>
+      </div>
+      <div class="analysis-grid">
+        <figure><img src="images/apd/nimbus-phugoid-mode.svg" alt="Phugoid-mode pitch angle over time" loading="lazy">
+          <figcaption>Phugoid response</figcaption>
+        </figure>
+        <figure><img src="images/apd/nimbus-short-period-mode.svg" alt="Short-period angle-of-attack response"
+            loading="lazy">
+          <figcaption>Short-period response</figcaption>
+        </figure>
+        <figure><img src="images/apd/nimbus-dutch-roll-mode.svg" alt="Dutch-roll sideslip response over time"
+            loading="lazy">
+          <figcaption>Dutch-roll response</figcaption>
+        </figure>
+        <figure><img src="images/apd/nimbus-spiral-mode.svg" alt="Spiral-mode bank-angle response" loading="lazy">
+          <figcaption>Spiral response</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <span class="kicker">Project context</span>
+      <h2 id="closing-title">Nimbus is a concept backed by analysis, with a clear next iteration.</h2>
+      <p>Completed in 2026 for the Aircraft Design and Flight Dynamics courses at IOE Pulchowk Campus with Amogh
+        Adhikari, Toran Bahadur Niroula, and Yogesh Dhami. The team’s design poster and a fuller technical account are
+        available below.</p>
+      <div class="closing-actions">
+        <a class="action primary" href="reports/nimbus-poster.pdf" download>Download design poster <span
+            aria-hidden="true">↓</span></a>
+        <a class="action secondary" href="https://toranniroula.com.np/work/nimbus-agricultural-uav/" target="_blank"
+          rel="noopener noreferrer">Read the team’s technical account <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">
-        <span class="logo-icon"><i class="fa-solid fa-plane"></i></span>
-        <span>AE Portfolio</span>
-      </div>
-      <p class="footer-text">Designed &amp; Built with precision. &copy; 2026 Anup Bajgain</p>
-    </div>
-  </footer>
-
+  <footer class="apd-footer"><a class="brand" href="../index.html#home">ANUP <span>BAJGAIN</span></a><span>APD · Nimbus
+      / Agricultural UAV</span><a href="../index.html#projects">Back to portfolio ↑</a></footer>
 </body>
 
 </html>

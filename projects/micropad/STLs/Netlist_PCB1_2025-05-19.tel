@@ -1,0 +1,11 @@
+$PACKAGES
+'SW-TH_EC11XXXXXXXX' ! 'SW-TH_EC11XXXXXXXX' ! '{Value}' ; SW8 
+switch ! switch ! '{Value}' ; U1 
+$A_PROPERTIES
+$NETS
+'$1N911' ; SW8.D 
+'$1N920' ; SW8.A 
+'$1N926' ; SW8.B 
+GND ; SW8.C SW8.E U1.1 U1.2 
+$SCHEDULE
+$END

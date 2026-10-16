@@ -3,111 +3,159 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aircraft Manufacturing | Aerospace Engineer Portfolio</title>
-  <link rel="icon" href="../favicons/aircraft-manufacturing.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="A 1:14 Piper PA-38 Tomahawk model developed for the Aircraft Manufacturing course at IOE Pulchowk Campus: design, simulation, laser cutting and assembly.">
+  <title>Aircraft Manufacturing | Anup Bajgain</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234dabf7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/aircraft-manufacturing.css">
 </head>
 
-<body class="dark-theme">
-
-  <a href="../index.html#projects" class="detail-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
-
-  <header class="detail-cover" style="background: linear-gradient(135deg, #1a1208 0%, #281e12 40%, #160c04 100%);">
-    <img src="images/aircraft-manufacturing-cover.jpg" alt="Aircraft Manufacturing" class="detail-cover-photo" loading="lazy" onerror="this.style.display='none'">
-    <div class="detail-cover-overlay"></div>
-    <svg viewBox="0 0 80 60" width="70" height="53">
-      <polygon points="25,10 55,10 65,50 15,50" fill="none" stroke="rgba(255,180,80,0.6)" stroke-width="1.5" />
-      <line x1="40" y1="10" x2="40" y2="50" stroke="rgba(255,180,80,0.3)" stroke-width="0.8" />
-    </svg>
-    <h1 class="detail-cover-title">Aircraft Manufacturing</h1>
+<body>
+  <a class="skip-link" href="#overview">Skip to project</a>
+  <header class="site-bar">
+    <a class="project-back-link" href="../index.html#projects">← Back to Portfolio</a>
+    <nav aria-label="Project navigation"><a href="#design">Design</a><a href="#simulation">Simulation</a><a
+        href="#fabrication">Fabrication</a><a href="#outcome">Outcome</a></nav>
   </header>
-
-  <main class="detail-content">
-    <p>A 1:14 scale plywood model of the Piper PA-38 Tomahawk, designed, analyzed, and hand-built for a sixth-semester
-      Aircraft Manufacturing course, with flyability confirmed through simulation.</p>
-
-    <div class="glass-card">
-      <h2>Objective</h2>
-      <ul>
-        <li>Scale the Piper PA-38 Tomahawk down to 1:14 while preserving its aerodynamic, structural, and propulsion
-          characteristics</li>
-        <li>Carry the design through to a fully fabricated, assembled model, meeting the course's hands-on manufacturing
-          requirement</li>
-      </ul>
-    </div>
-
-    <div class="glass-card">
-      <h2>Approach</h2>
-      <ul>
-        <li>Scaled every dimension of the full-size Tomahawk by 1:14, keeping the aspect ratio constant at 9.33</li>
-        <li>Selected the NASA GAW-1 airfoil and a ~5&deg; dihedral for roll stability, then calculated wing loading and
-          CG placement (25&ndash;30% of the mean aerodynamic chord)</li>
-        <li>Reinforced the T-tail mount to handle the added stress from the stabilizer's high position</li>
-        <li>Validated aerodynamics and stability in XFLR5, then checked flyability in X-Plane across phugoid,
-          short-period, dutch roll, roll-damping, and spiral modes</li>
-        <li>Modeled the parts in CATIA, generated laser-cutting files in RDWorks, and laser-cut the plywood ribs,
-          frames, spars, longerons, tail, and propeller in three batches at IOE Pulchowk's manufacturing lab</li>
-        <li>Hand-assembled the cut parts using Vega glue</li>
-      </ul>
-      <figure>
-        <img src="images/aircraft-manufacturing/cad-xflr5-model.jpg"
-          alt="CAD and XFLR5 model of the scaled wing and tail assembly">
-        <figcaption>Wing and tail assembly modeled in CATIA, analyzed in XFLR5</figcaption>
-      </figure>
-      <figure>
-        <img src="images/aircraft-manufacturing/laser-cutting.jpg" alt="Laser-cutting the plywood aircraft parts">
-        <figcaption>Laser-cutting the plywood parts at the manufacturing lab</figcaption>
-      </figure>
-    </div>
-
-    <div class="glass-card">
-      <h2>Key Results</h2>
-      <ul>
-        <li>Wing loading came out to ~6.79 kg/m&sup2; at a 400 g model weight &mdash; within the appropriate range for a
-          small-scale aircraft</li>
-        <li>X-Plane simulation across all flight modes confirmed the design was flyable</li>
-        <li>The finished 1:14 prototype successfully replicated the full-scale aircraft's structural properties and was
-          fully fabricated</li>
-      </ul>
-      <figure>
-        <img src="images/aircraft-manufacturing/final-assembly.jpg"
-          alt="Finished 1:14 scale Piper PA-38 Tomahawk plywood model">
-        <figcaption>The finished 1:14 scale prototype</figcaption>
-      </figure>
-    </div>
-
-    <div class="project-tags">
-      <span class="project-tag">XFLR5</span>
-      <span class="project-tag">Plane Maker</span>
-      <span class="project-tag">X-Plane 12</span>
-      <span class="project-tag">CATIA</span>
-      <span class="project-tag">RDWorks</span>
-    </div>
-
-    <a href="reports/APD.pdf" download class="btn btn-primary">
-      <span>Download Report</span>
-      <i class="fa-solid fa-download"></i>
-    </a>
-  </main>
-
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">
-        <span class="logo-icon"><i class="fa-solid fa-plane"></i></span>
-        <span>AE Portfolio</span>
+  <main id="overview">
+    <section class="hero" aria-labelledby="project-title">
+      <div class="hero-copy">
+        <span class="eyebrow">Aircraft Manufacturing · Sixth-semester project</span>
+        <h1 id="project-title">From drawing to <em>airframe.</em></h1>
+        <p class="hero-lead">A 1:14 scale Piper PA-38 Tomahawk model, designed, simulated and assembled from laser-cut
+          plywood.</p>
+        <p class="hero-detail">For our Aircraft Manufacturing course at IOE Pulchowk Campus, we worked through
+          preliminary sizing, CAD, digital flight checks and hands-on fabrication.</p>
+        <div class="actions"><a class="button primary" href="#design">Explore the project <span
+              aria-hidden="true">↘</span></a><a class="button secondary" href="reports/Manufacturingreport.pdf"
+            download>Download the report <span aria-hidden="true">↓</span></a></div>
       </div>
-      <p class="footer-text">Designed &amp; Built with precision. &copy; 2026 Anup Bajgain</p>
+      <figure class="hero-image"><img src="images/aircraft-manufacturing/assembled-model.jpg"
+          alt="Finished laser-cut plywood model of the Piper PA-38 Tomahawk" width="679" height="509"
+          fetchpriority="high">
+        <figcaption>Completed scale model · Photo from the team report</figcaption>
+      </figure>
+    </section>
+    <div class="fact-strip" aria-label="Project dimensions">
+      <div><span>Scale</span><strong>1:14</strong><small>of the Piper PA-38</small></div>
+      <div><span>Model span</span><strong>74 <i>cm</i></strong><small>scaled from 10.36 m</small></div>
+      <div><span>Model length</span><strong>50 <i>cm</i></strong><small>scaled from 7.01 m</small></div>
+      <div><span>Structure</span><strong>Plywood</strong><small>laser-cut and glued</small></div>
     </div>
-  </footer>
-
+    <section class="chapter" id="design" aria-labelledby="design-title">
+      <div class="chapter-label"><span>01 / DESIGN</span><span class="label-rule"></span></div>
+      <div class="chapter-content">
+        <p class="kicker">Scaling the Tomahawk</p>
+        <h2 id="design-title">A familiar aircraft, reduced to a buildable scale.</h2>
+        <p>We started with the PA-38's dimensions and divided each linear measurement by 14. That produced a 74 cm
+          wingspan, roughly 50 cm fuselage and 7.9 cm average chord. The wing's aspect ratio stays at 9.33 when scaled
+          uniformly; the wing area becomes about 0.0589 m².</p>
+        <div class="design-grid">
+          <div class="spec-card"><span>Wing</span>
+            <p>NASA GAW-1 airfoil selected for the design study, with about 5° dihedral proposed to improve roll
+              stability.</p>
+          </div>
+          <div class="spec-card"><span>Loading</span>
+            <p>At an assumed 400 g model mass, estimated wing loading was 6.79 kg/m². This was a design estimate, not a
+              measured final weight.</p>
+          </div>
+          <div class="spec-card"><span>Balance &amp; tail</span>
+            <p>The planned center of gravity was 25–30% of mean aerodynamic chord. The high-mounted T-tail needed a
+              reinforced fuselage attachment.</p>
+          </div>
+        </div>
+        <div class="image-pair">
+          <figure class="image-card"><img src="images/aircraft-manufacturing/cad-fuselage.jpg"
+              alt="CATIA model showing the plywood fuselage frames and longerons" loading="lazy" width="699"
+              height="405">
+            <figcaption>CATIA · fuselage frame and longeron layout</figcaption>
+          </figure>
+          <figure class="image-card"><img src="images/aircraft-manufacturing/cad-wing.jpg"
+              alt="CATIA model showing the plywood wing ribs and spar" loading="lazy" width="577" height="559">
+            <figcaption>CATIA · rib and spar layout</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="chapter" id="simulation" aria-labelledby="simulation-title">
+      <div class="chapter-label"><span>02 / SIMULATION</span><span class="label-rule"></span></div>
+      <div class="chapter-content">
+        <p class="kicker">Digital checks</p>
+        <h2 id="simulation-title">Analysis guided the design before cutting.</h2>
+        <p>The team used XFLR5 for early airfoil and aircraft analysis at relevant Reynolds numbers. A matching model in
+          X-Plane was used to assess simulated flyability and examine phugoid, short-period, Dutch-roll, roll-damping
+          and spiral responses.</p>
+        <div class="note"><strong>What the result means</strong>
+          <p>The report describes a positive X-Plane flyability check. It does not document a physical flight test of
+            the plywood model, so the simulation should not be read as proof that the finished model flew.</p>
+        </div>
+        <div class="image-pair">
+          <figure class="image-card"><img src="images/aircraft-manufacturing/xflr5-model.jpg"
+              alt="Digital model of the Tomahawk wing and T-tail used in the design study" loading="lazy" width="686"
+              height="516">
+            <figcaption>Digital aircraft geometry used in the analysis</figcaption>
+          </figure>
+          <figure class="image-card"><img src="images/aircraft-manufacturing/xplane-flight.jpg"
+              alt="Piper Tomahawk model in an X-Plane flight simulation" loading="lazy" width="792" height="383">
+            <figcaption>X-Plane · simulated flight of the scaled design</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="chapter" id="fabrication" aria-labelledby="fabrication-title">
+      <div class="chapter-label"><span>03 / FABRICATION</span><span class="label-rule"></span></div>
+      <div class="chapter-content">
+        <p class="kicker">In the manufacturing lab</p>
+        <h2 id="fabrication-title">CAD files became cut parts, then an aircraft.</h2>
+        <p>Parts were modeled in CATIA, exported as DXF files and prepared for the laser cutter in RDWorks. The team cut
+          ribs, fuselage frames, longerons, tail parts, spars and a propeller in three batches at IOE Pulchowk's
+          manufacturing lab. The plywood parts were sorted and joined with Vega glue.</p>
+        <div class="steps" aria-label="Manufacturing sequence">
+          <div><b>01</b><span>Model in CATIA</span></div>
+          <div><b>02</b><span>Prepare in RDWorks</span></div>
+          <div><b>03</b><span>Laser-cut plywood</span></div>
+          <div><b>04</b><span>Fit and assemble</span></div>
+        </div>
+        <div class="image-pair">
+          <figure class="image-card"><img src="images/aircraft-manufacturing/cut-layout.jpg"
+              alt="Nested outlines of ribs, frames and other aircraft parts for laser cutting" loading="lazy"
+              width="411" height="407">
+            <figcaption>Part nesting for the laser-cutting run</figcaption>
+          </figure>
+          <figure class="image-card"><img src="images/aircraft-manufacturing/laser-cutting-real.jpg"
+              alt="Laser cutter producing plywood aircraft parts at the manufacturing lab" loading="lazy" width="718"
+              height="544">
+            <figcaption>Cutting the plywood components in the lab</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="outcome" id="outcome" aria-labelledby="outcome-title">
+      <div>
+        <p class="kicker">04 / OUTCOME</p>
+        <h2 id="outcome-title">A completed structural model and a practical lesson in making it.</h2>
+        <p>The project ended with an assembled 1:14 plywood representation of the PA-38. The report records the digital
+          analysis and fabrication sequence, including the judgement needed to identify, fit and join the cut parts. No
+          measured flight performance is reported for the finished model.</p>
+        <div class="actions"><a class="button primary" href="reports/Manufacturingreport.pdf" download>Download report
+            <span aria-hidden="true">↓</span></a></div>
+      </div>
+      <figure><img src="images/aircraft-manufacturing/assembled-model.jpg"
+          alt="Completed plywood Tomahawk model showing the wings, fuselage and T-tail" loading="lazy" width="679"
+          height="509">
+        <figcaption>The completed model · Photo from the original report</figcaption>
+      </figure>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../index.html#home">ANUP <span>BAJGAIN</span></a><span>Aircraft Manufacturing ·
+      IOE Pulchowk Campus</span><a href="../index.html#projects">Back to portfolio ↑</a></footer>
 </body>
 
 </html>

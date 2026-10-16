@@ -3,114 +3,220 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final Year Project | Aerospace Engineer Portfolio</title>
-  <link rel="icon" href="../favicons/final-year-project.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Anup Bajgain's final-year project: measuring the effect of surface heating on a compressible wall jet with Rainbow Schlieren Deflectometry and comparing the results with CFD.">
+  <title>Rainbow Schlieren Wall-Jet Study | Anup Bajgain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/wall-jet.css">
+  <link rel="stylesheet" href="../css/project-shared.css">
 </head>
 
-<body class="dark-theme">
-
-  <a href="../index.html#projects" class="detail-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
-
-  <header class="detail-cover" style="background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #0a1628 100%);">
-    <img src="images/final-year-project-cover.jpg" alt="Final Year Project" class="detail-cover-photo" loading="lazy" onerror="this.style.display='none'">
-    <div class="detail-cover-overlay"></div>
-    <svg viewBox="0 0 80 60" width="70" height="53">
-      <path d="M10 45 L35 10 L60 35 L70 20" fill="none" stroke="rgba(100,180,255,0.6)" stroke-width="2" />
-      <path d="M10 48 L35 14 L60 38 L70 24" fill="none" stroke="rgba(100,200,255,0.3)" stroke-width="1" />
-    </svg>
-    <h1 class="detail-cover-title">Final Year Project</h1>
+<body>
+  <a class="skip-link" href="#overview">Skip to project</a>
+  <header class="site-header">
+    <a class="project-back-link" href="../index.html#projects">← Back to Portfolio</a>
+    <nav aria-label="Project navigation">
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#calibration">Calibration</a>
+      <a href="#results">Results</a>
+    </nav>
   </header>
-
-  <main class="detail-content">
-
-    <div class="glass-card">
-      <p>This project built an experimental rig that fires a high-speed jet of air along a heated metal plate, then used
-        a color-based optical technique to measure how the air's density changes near the hot surface, benchmarked
-        against CFD simulations.</p>
-    </div>
-
-    <div class="glass-card">
-      <h2>Objective</h2>
-      <ul>
-        <li>Design and characterize a compressible jet facility — a converging nozzle paired with a
-          temperature-controlled flat plate.</li>
-        <li>Calibrate a Rainbow Schlieren Deflectometry (RSD) system to extract quantitative density-gradient, density,
-          and temperature fields for the wall jet.</li>
-        <li>Run 2D CFD simulations of the same flow and compare them with the experimental data.</li>
-        <li>Develop and validate pyrsd, an open-source Python library for RSD processing.</li>
-      </ul>
-    </div>
-
-    <div class="glass-card">
-      <h2>Approach</h2>
-      <ul>
-        <li>3D-printed a converging nozzle (12 mm × 5 mm exit) fed by a compressor, producing a high-subsonic jet (up to
-          M ≈ 0.97) over a Peltier-heated, PID-controlled metal plate held at 40°C and 60°C.</li>
-        <li>Used a Z-type double-mirror schlieren system with custom rainbow color filters, fabricated on E6 slide film
-          after early digitally-printed versions showed poor transmissivity.</li>
-        <li>Built pyrsd, a Python library covering hue calibration, per-frame displacement extraction, ensemble
-          averaging, and density reconstruction via 1D integration and 2D Poisson inversion.</li>
-        <li>Validated the pipeline against natural convection from the heated plate before applying it to the wall jet,
-          then compared results with 2D RANS CFD (ANSYS Fluent, k-ω SST).</li>
-      </ul>
-    </div>
-
-    <div class="glass-card">
-      <h2>Key Results</h2>
-      <ul>
-        <li>RSD recovered the plate's known surface temperature from natural-convection images to within ~0.3–1% of the
-          thermocouple setpoint, validating the pipeline.</li>
-        <li>Peak density gradient scaled with wall temperature: ≈0.016 kg/m³/mm at 40°C versus ≈0.026 kg/m³/mm at 60°C
-          in the natural-convection case.</li>
-        <li>Schlieren imagery confirmed nozzle choking above ~1.9 bar gauge, matching the predicted critical pressure
-          ratio, with oblique shock structures visible beyond that point.</li>
-        <li>CFD (k-ω SST) over-predicted near-wall density gradients relative to RSD by roughly an order of magnitude
-          near the nozzle exit, narrowing further downstream.</li>
-        <li>pyrsd was released as an open-source library — the report notes no equivalent open, documented RSD
-          processing tool existed previously.</li>
-      </ul>
-    </div>
-
-    <div class="glass-card">
-      <h2>Tools &amp; Technologies</h2>
-      <div class="project-tags">
-        <span class="project-tag">pyrsd</span>
-        <span class="project-tag">Python</span>
-        <span class="project-tag">NumPy</span>
-        <span class="project-tag">SciPy</span>
-        <span class="project-tag">Matplotlib</span>
-        <span class="project-tag">ANSYS Fluent</span>
-        <span class="project-tag">OpenFOAM</span>
-        <span class="project-tag">SOLIDWORKS</span>
-        <span class="project-tag">Arduino</span>
-        <span class="project-tag">3D Printing</span>
+  <main id="overview">
+    <section class="intro" aria-labelledby="title">
+      <div class="intro-top"><span class="eyebrow">Final-year research · 2025–26</span><span class="page-count">FYP /
+          01</span></div>
+      <h1 id="title">Making invisible<br><em>flow</em> measurable<span class="period">.</span></h1>
+      <div class="intro-bottom">
+        <p>Study of the Surface Heating Effect on a Compressible Wall Jet Using <strong>Rainbow Schlieren
+            Deflectometry</strong></p>
+        <div class="intro-actions"><a class="btn dark" href="#method">Explore the work ↘</a><a class="btn outline"
+            href="reports/final-year-project.pdf" download>Download thesis ↓</a></div>
       </div>
-      <a href="reports/final-year-project.pdf" download class="btn btn-primary">
-        <span>Download Full Report</span>
-        <i class="fa-solid fa-download"></i>
-      </a>
-    </div>
+    </section>
 
+    <figure class="hero-data">
+      <div class="hero-data-heading"><span>Measured field / 01</span><span>1.0 bar gauge · 60 °C plate</span></div>
+      <img src="images/wall-jet/wall-jet-rsd-gradient-1.0bar-60c.png"
+        alt="Measured mean wall-normal density-gradient field of a compressible wall jet over a heated plate"
+        width="1800" height="486" fetchpriority="high">
+      <figcaption>The measured density-gradient layer runs from the nozzle across the heated surface. Colors encode
+        gradient magnitude.</figcaption>
+    </figure>
+
+    <section class="overview" aria-labelledby="overview-title">
+      <div class="section-marker"><span>01</span><span>The question</span></div>
+      <div>
+        <h2 id="overview-title">What changes when a fast wall jet meets a hot surface?</h2>
+        <p>A high-subsonic air jet travels along a metal plate. Heating the plate changes the near-wall density field,
+          but the effect is hard to see directly. Our four-person team built the jet facility and an optical measurement
+          system, then used calibrated color images to reconstruct density gradients and compare them with a CFD model.
+        </p>
+        <p>Rainbow Schlieren Deflectometry (RSD) converts tiny light-ray deflections into hue changes. With a measured
+          filter calibration, the colors become quantitative data rather than visual effects.</p>
+      </div>
+    </section>
+
+    <section class="parameter-band" aria-label="Experimental conditions">
+      <div><span>Nozzle exit</span><strong>12 × 5 <small>mm</small></strong><span>3D-printed converging nozzle</span>
+      </div>
+      <div><span>Plate settings</span><strong>40 / 60 <small>°C</small></strong><span>PID-controlled heating</span>
+      </div>
+      <div><span>Gauge pressure</span><strong>1.0 / 1.4 <small>bar</small></strong><span>Quantitative RSD cases</span>
+      </div>
+      <div><span>Optics</span><strong>2 × 200 <small>mm</small></strong><span>Z-type parabolic mirrors</span></div>
+    </section>
+
+    <section id="method" class="method section-wrap" aria-labelledby="method-title">
+      <div class="section-marker"><span>02</span><span>Build &amp; measure</span></div>
+      <div class="section-main">
+        <span class="overline">The experimental path</span>
+        <h2 id="method-title">A facility, a color filter, and a measurement pipeline.</h2>
+        <div class="method-grid">
+          <article class="method-card"><span>01 / FLOW</span>
+            <h3>Build the jet</h3>
+            <p>A compressor feeds a 3D-printed converging nozzle. An Arduino Nano PID controller drives Peltier modules
+              beneath the plate to hold the two temperature settings.</p>
+          </article>
+          <article class="method-card"><span>02 / OPTICS</span>
+            <h3>Encode the gradient</h3>
+            <p>Two parabolic mirrors form a Z-type schlieren path. A fine-grain color filter replaces the usual knife
+              edge so ray deflection appears as a hue shift.</p>
+          </article>
+          <article class="method-card"><span>03 / SOFTWARE</span>
+            <h3>Decode the image</h3>
+            <p>The team's <a href="https://github.com/toranbdrniroula/pyrsd" target="_blank"
+                rel="noopener noreferrer">pyrsd</a> Python library calibrates hue to displacement, averages frames, and
+              reconstructs density and temperature fields.</p>
+          </article>
+        </div>
+        <div class="photo-pair">
+          <figure><img src="images/wall-jet/wall-jet-rsd-experimental-setup.jpg"
+              alt="Annotated photograph of the compressible wall-jet test facility" loading="lazy">
+            <figcaption>The full facility: air supply, nozzle, heated plate, optics, and camera.</figcaption>
+          </figure>
+          <figure><img src="images/wall-jet/wall-jet-rsd-schlieren-system.jpg"
+              alt="Z-type double-mirror rainbow schlieren optical system" loading="lazy">
+            <figcaption>The Z-type optical path and camera used for rainbow schlieren imaging.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="calibration" class="filter-story section-wrap" aria-labelledby="filter-title">
+      <div class="section-marker"><span>03</span><span>Iteration</span></div>
+      <div class="section-main">
+        <span class="overline">A crucial fabrication decision</span>
+        <h2 id="filter-title">The filter had to be precise enough for the camera.</h2>
+        <p>Early transparency prints introduced visible halftone artifacts and lost light. E6 slide film produced a
+          cleaner color gradient that could be calibrated against known filter displacements. That change made
+          quantitative imaging practical.</p>
+        <div class="comparison-grid">
+          <figure><img src="images/wall-jet/wall-jet-rsd-filter-digital-print.png"
+              alt="Schlieren image with halftone artifacts from a digitally printed filter" loading="lazy">
+            <figcaption><b>Digital print</b><span>Dot pattern contaminates the image.</span></figcaption>
+          </figure>
+          <figure><img src="images/wall-jet/wall-jet-rsd-filter-e6-film.png"
+              alt="Cleaner schlieren image using an E6 slide-film filter" loading="lazy">
+            <figcaption><b>E6 slide film</b><span>Smooth hue transitions preserve the flow structure.</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="calibration-row"><img src="images/wall-jet/wall-jet-rsd-calibration-curve.jpg"
+            alt="Calibration curve mapping measured hue to filter displacement" loading="lazy">
+          <p>The filter was moved through known positions on a translation stage. An image at each position produced a
+            hue-to-displacement calibration curve for that filter and optical alignment.</p>
+        </div>
+        <div class="calibration-steps" aria-label="RSD calibration and processing sequence">
+          <div><span>01 / CALIBRATE</span>
+            <p>Capture the stepped-filter sequence and fit a smooth hue-to-displacement curve.</p>
+          </div>
+          <div><span>02 / REFERENCE</span>
+            <p>Record a no-flow background, then subtract its displacement field from the flow images.</p>
+          </div>
+          <div><span>03 / RECONSTRUCT</span>
+            <p>Use the optical geometry and Gladstone–Dale relation to obtain density gradients; integrate to recover
+              density, then derive temperature.</p>
+          </div>
+        </div>
+        <p class="calibration-note">Calibration is sensitive to alignment, lighting, and camera white balance, so a
+          curve from one session should not be assumed valid for another. See the team's <a
+            href="https://toranniroula.com.np/work/pyrsd-library/" target="_blank" rel="noopener noreferrer">pyrsd
+            library account</a> for the complete processing pipeline.</p>
+      </div>
+    </section>
+
+    <section id="results" class="results" aria-labelledby="results-title">
+      <div class="results-inner"><span class="overline">What the data showed</span>
+        <h2 id="results-title">Heat and jet momentum interact.</h2>
+        <p>At lower jet pressure, raising the wall from 40 °C to 60 °C produced a stronger near-wall density-gradient
+          response. At the higher pressure, the temperature effect was much less distinct close to the nozzle and became
+          clearer downstream. The two inputs cannot be understood as independent effects.</p>
+        <div class="result-highlights">
+          <div><span>Calibration check</span><strong>0.3–1%</strong>
+            <p>Natural-convection temperature recovery relative to the known plate setting.</p>
+          </div>
+          <div><span>CFD–RSD gap</span><strong>~10×</strong>
+            <p>Approximate difference in near-nozzle peak gradients. The cause remains unresolved: camera sharpness,
+              spatial resolution, optical averaging, and CFD modeling could all
+              contribute; the gap narrows downstream.</p>
+          </div>
+        </div>
+        <div class="result-figures">
+          <figure><img src="images/wall-jet/wall-jet-rsd-temperature-effect-1.0bar.png"
+              alt="Density-gradient profiles comparing 40 and 60 degrees Celsius at 1.0 bar gauge" loading="lazy">
+            <figcaption>Temperature effect at 1.0 bar gauge.</figcaption>
+          </figure>
+          <figure><img src="images/wall-jet/wall-jet-rsd-temperature-effect-1.4bar.png"
+              alt="Density-gradient profiles comparing 40 and 60 degrees Celsius at 1.4 bar gauge" loading="lazy">
+            <figcaption>Temperature effect at 1.4 bar gauge.</figcaption>
+          </figure>
+        </div>
+        <div class="result-comparison">
+          <span class="overline">Experiment × simulation</span>
+          <h3>Comparing RSD with CFD</h3>
+          <p>A 2D steady RANS model in ANSYS Fluent used the k–ω SST turbulence model for the wall jet. Its near-wall
+            peak gradients were much larger than those recovered by RSD close to the nozzle, although the profile shapes
+            were similar and the difference narrowed downstream. This comparison does not establish which method is
+            closer to the true peak.</p>
+          <div class="comparison-grid charts">
+            <figure><img src="images/wall-jet/wall-jet-rsd-cfd-vs-rsd-x20mm.png"
+                alt="Comparison of CFD and RSD density-gradient profiles 20 mm downstream" loading="lazy">
+              <figcaption><b>20 mm downstream</b><span>The largest CFD–RSD gap.</span></figcaption>
+            </figure>
+            <figure><img src="images/wall-jet/wall-jet-rsd-cfd-vs-rsd-x120mm.png"
+                alt="Comparison of CFD and RSD density-gradient profiles 120 mm downstream" loading="lazy">
+              <figcaption><b>120 mm downstream</b><span>Closer profile agreement.</span></figcaption>
+            </figure>
+          </div>
+          <p class="caveat">The cause is unresolved. Limited image sharpness and spatial resolution could smooth a
+            narrow experimental peak; line-of-sight averaging could do the same. The CFD may also exaggerate the peak
+            because it reduces a three-dimensional flow to 2D and depends on a turbulence model. Better-resolved images
+            and additional model checks are needed before attributing the difference. Exit Mach numbers in the report
+            are CFD estimates, not direct measurements.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div><span class="overline">The team</span>
+        <h2>A team project at Pulchowk Campus.</h2>
+        <p>Final-year project at IOE Pulchowk Campus by Anup Bajgain, Amogh Adhikari, Toran Bahadur Niroula, and Yogesh
+          Dhami, supervised by Asst. Prof. Kamal Darlami and Asst. Prof. Laxman Motra.</p>
+        <div class="closing-links"><a class="btn light" href="reports/final-year-project.pdf" download>Download full
+            thesis ↓</a><a class="btn line" href="https://toranniroula.com.np/work/compressible-wall-jet-rsd/"
+            target="_blank" rel="noopener noreferrer">Read the team account ↗</a></div>
+
+      </div>
+    </section>
   </main>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">
-        <span class="logo-icon"><i class="fa-solid fa-plane"></i></span>
-        <span>AE Portfolio</span>
-      </div>
-      <p class="footer-text">Designed &amp; Built with precision. &copy; 2026 Anup Bajgain</p>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><a class="brand" href="../index.html#home">ANUP <span>BAJGAIN</span></a><span>Rainbow
+      Schlieren · Final-year project</span><a href="../index.html#projects">Back to portfolio ↑</a></footer>
 </body>
 
 </html>

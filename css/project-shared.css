@@ -1,0 +1,210 @@
+/* Typography and controls shared by the APD and final-year pages. */
+:root {
+  --project-accent: #4dabf7;
+  --project-accent-hover: #1c7ed6;
+  --project-text: #e6ecf3;
+  --project-muted: #aab8ca;
+}
+
+body {
+  background: #0a0e17;
+  color: var(--project-text);
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, .brand, .action, .btn,
+.fact-strip strong, .mission-grid b, .result strong,
+.parameter-band strong, .result-highlights strong {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+.site-bar, .site-header {
+  min-height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0a0e17;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.project-back-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: var(--project-text);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.project-back-link:hover {
+  border-color: var(--project-accent);
+  color: var(--project-accent);
+}
+
+.site-bar nav, .site-header nav {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.site-bar nav::-webkit-scrollbar,
+.site-header nav::-webkit-scrollbar {
+  display: none;
+}
+
+.site-bar nav a, .site-header nav a {
+  flex: 0 0 auto;
+}
+
+[id] {
+  scroll-margin-top: 90px;
+}
+
+.brand {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.brand span, .title-period, .period,
+.eyebrow, .kicker, .overline,
+.chapter-number, .section-marker span:first-child,
+.fact-strip strong, .mission-grid b,
+.parameter-band strong small, .result-highlights strong,
+.results .overline, .closing .overline {
+  color: var(--project-accent);
+}
+
+.site-bar nav a, .site-header nav a,
+.apd-footer a:not(.brand), .site-footer > a:last-child {
+  color: var(--project-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.site-bar nav a:hover, .site-header nav a:hover,
+.apd-footer a:hover, .site-footer > a:last-child:hover {
+  color: var(--project-accent);
+}
+
+.hero h1, .intro h1 {
+  font-size: clamp(2.6rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  margin: 22px 0 20px;
+}
+
+.hero-lead, .intro-bottom p {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.hero-detail, .chapter-body > p, .overview p,
+.section-main > p, .results-inner > p, .closing p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.action, .btn {
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.action.primary, .btn.dark {
+  background: var(--project-accent);
+  color: #fff;
+  border-color: var(--project-accent);
+}
+
+.action.primary:hover, .btn.dark:hover {
+  background: var(--project-accent-hover);
+}
+
+.action.secondary, .btn.outline {
+  border-color: var(--project-muted);
+}
+
+.status-dot {
+  background: var(--project-accent);
+  box-shadow: 0 0 0 5px rgba(77, 171, 247, 0.2);
+}
+
+.hero, .hero-visual {
+  min-height: 490px;
+}
+
+.hero-copy {
+  padding-top: 64px;
+  padding-bottom: 85px;
+}
+
+.intro {
+  max-width: 1200px;
+  padding-top: 56px;
+  padding-bottom: 58px;
+}
+
+.hero-data, .fact-strip, .chapter,
+.overview, .section-wrap, .parameter-band, .appendix {
+  max-width: 1200px;
+}
+
+.chapter, .overview, .section-wrap, .appendix {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.method-card, .calibration-steps > div {
+  border-top-color: var(--project-accent);
+}
+
+.method-card > span, .calibration-steps span,
+.method-card a, .calibration-note a {
+  color: var(--project-accent);
+}
+
+.result-comparison .caveat,
+.outcome-note, .validation-callout {
+  border-left-color: var(--project-accent);
+}
+
+@media (max-width: 700px) {
+  .site-bar nav a, .site-header nav a {
+    display: inline !important;
+  }
+
+  .hero-copy {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .chapter, .overview, .section-wrap, .appendix {
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+}

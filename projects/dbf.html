@@ -13,7 +13,15 @@
 </head>
 <body class="dark-theme">
 
-  <a href="../index.html#projects" class="detail-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+  <div class="project-topbar">
+    <div class="project-topbar-inner">
+      <a href="../index.html#projects" class="detail-back-link">← Back to Portfolio</a>
+      <nav class="project-section-links" aria-label="Project navigation">
+        <a href="#contributions">Contributions</a>
+        <a href="#context">Tools &amp; Context</a>
+      </nav>
+    </div>
+  </div>
 
   <header class="detail-cover" style="background: linear-gradient(135deg, #0d1a1a 0%, #182828 40%, #0a1616 100%);">
     <img src="images/dbf-cover.jpg" alt="DBF" class="detail-cover-photo" loading="lazy" onerror="this.style.display='none'">
@@ -31,7 +39,7 @@
         contributed to the development of the team's competition aircraft, Junkiri.</p>
     </div>
 
-    <div class="glass-card">
+    <div class="glass-card" id="contributions">
       <h2>Contributions</h2>
       <ul>
         <li>Collaborated on aerodynamic design for the competition aircraft</li>
@@ -41,7 +49,7 @@
       </ul>
     </div>
 
-    <div class="glass-card">
+    <div class="glass-card" id="context">
       <h2>Tools &amp; Context</h2>
       <div class="project-tags">
         <span class="project-tag">AIAA Design/Build/Fly</span>
@@ -57,7 +65,7 @@
     <div class="footer-container">
       <div class="footer-logo">
         <span class="logo-icon"><i class="fa-solid fa-plane"></i></span>
-        <span>AE Portfolio</span>
+        <span>ANUP<span class="logo-accent"> BAJGAIN</span></span>
       </div>
       <p class="footer-text">Designed &amp; Built with precision. &copy; 2026 Anup Bajgain</p>
     </div>

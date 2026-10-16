@@ -264,61 +264,9 @@
   }
   initRevealAnimations();
 
-  // ===== TYPEWRITER EFFECT (Typed.js, with homemade fallback) =====
-  const words = [
-    "CFD Enthusiast",
-    "Computational Engineer",
-    "Fluid Dynamics Specialist",
-    "UAV Designer",
-  ];
-  if (window.Typed) {
-    new Typed("#typewriterDynamic", {
-      strings: words,
-      typeSpeed: 55,
-      backSpeed: 28,
-      backDelay: 1500,
-      startDelay: 200,
-      loop: true,
-      showCursor: false,
-    });
-  } else {
-    const typewriterElement = document.getElementById("typewriterDynamic");
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    function type() {
-      const currentWord = words[wordIndex];
-      if (!isDeleting) {
-        typewriterElement.textContent = currentWord.substring(
-          0,
-          charIndex + 1,
-        );
-        charIndex++;
-        if (charIndex === currentWord.length) {
-          setTimeout(() => {
-            isDeleting = true;
-            type();
-          }, 1500);
-          return;
-        }
-        setTimeout(type, 100);
-      } else {
-        typewriterElement.textContent = currentWord.substring(
-          0,
-          charIndex - 1,
-        );
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-          setTimeout(type, 400);
-          return;
-        }
-        setTimeout(type, 50);
-      }
-    }
-    type();
-  }
+  // Keep the role line stable so visitors can read it immediately.
+  const typewriterElement = document.getElementById("typewriterDynamic");
+  if (typewriterElement) typewriterElement.textContent = "CFD & Experimental Fluid Dynamics";
 
   // ===== STAT COUNTER ANIMATION (CountUp.js, with homemade fallback) =====
   const statNumbers = document.querySelectorAll(".stat-number[data-count]");
@@ -394,13 +342,6 @@
   });
   scrollTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // ===== CONTACT FORM (prevent default) =====
-  document.getElementById("contactForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Thanks for your message! (Demo form - no backend)");
-    e.target.reset();
   });
 
   // ===== HERO CANVAS PARTICLES (theme-aware, gentle CFD-style curl) =====
