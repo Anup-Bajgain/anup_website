@@ -1,0 +1,13 @@
+.collection-shell { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }
+.collection-intro { max-width: 720px; padding: 72px 0 48px; }
+.collection-eyebrow { color: var(--accent); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+.collection-intro h1 { font-family: var(--font-primary); font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin: 18px 0 24px; }
+.collection-intro h1 span { color: var(--accent); }
+.collection-intro > p:last-child { color: var(--text-secondary); line-height: 1.8; }
+.collection-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); scroll-margin-top: 100px; }
+.collection-grid .project-card { display: flex; flex-direction: column; }
+.collection-grid .project-info { flex: 1; }
+.collection-marker { display: flex; align-items: flex-end; height: 180px; padding: 24px; border-bottom: 1px solid var(--glass-border); background: linear-gradient(135deg, #10243b, #101725); color: var(--accent); font-family: var(--font-primary); font-size: 1.1rem; letter-spacing: .12em; }
+.collection-note { color: var(--text-secondary); font-size: .8rem; }
+.collection-shell a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+@media (max-width: 600px) { .collection-intro { padding-top: 48px; } }

@@ -26,6 +26,9 @@
   <!-- CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/flight-lab.css">
+  <link rel="stylesheet" href="css/flight-transition.css">
+  <script src="js/flight-transition-boot.js"></script>
 </head>
 
 <body class="dark-theme">
@@ -85,17 +88,7 @@
 
     <!-- ========== HERO SECTION ========== -->
     <section class="hero" id="home">
-      <canvas class="hero-canvas" id="heroCanvas"></canvas>
-      <div class="hero-grid-overlay"></div>
-      <div class="hero-orbit" id="heroOrbit">
-        <div class="orbit-ring orbit-ring-1"></div>
-        <div class="orbit-ring orbit-ring-2"></div>
-        <div class="orbit-ring orbit-ring-3"></div>
-        <div class="radar-sweep" aria-hidden="true"></div>
-        <span class="radar-blip radar-blip-1" aria-hidden="true"></span>
-        <span class="radar-blip radar-blip-2" aria-hidden="true"></span>
-        <span class="radar-blip radar-blip-3" aria-hidden="true"></span>
-      </div>
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
       <div class="hero-content">
         <p class="hero-greeting">Hello, I'm</p>
         <h1 class="hero-name">Anup<span class="hero-name-accent"> Bajgain</span></h1>
@@ -125,6 +118,16 @@
           </a>
         </div>
       </div>
+      <figure class="flight-lab" aria-label="A three-dimensional airliner with faint flowing air">
+        <canvas id="flightCanvas" role="img"
+          aria-label="A silver 3D airliner rendered from an STL model, with faint air flowing around its wings and fuselage.">An
+          aircraft in flight.</canvas>
+        <img id="flightFallback" class="flight-fallback" src="models/airliner/preview.png"
+          alt="Three-dimensional silver airliner" hidden>
+        <figcaption class="flight-caption"><span class="flight-caption-line"></span>THE ART OF FLIGHT</figcaption>
+        <button id="flightPause" class="flight-pause" type="button" aria-label="Pause flight animation"
+          aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button>
+      </figure>
       <div class="scroll-indicator">
         <span class="scroll-indicator-text">Scroll</span>
         <div class="scroll-indicator-line">
@@ -219,21 +222,25 @@
           <!-- Toolkit Card 1: CFD -->
           <div class="skill-card glass-card reveal">
             <div class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path class="skill-icon-wash" d="M12 26C15 17 25 19 39 27C26 30 17 30 12 26Z"/>
-                <path d="M12 26C15 17 25 19 39 27C26 30 17 30 12 26Z"/>
-                <path d="M5 17C15 8 29 13 43 20M5 23C9 13 25 11 43 24M5 31C15 37 29 36 43 31M5 38C18 42 31 40 43 36" opacity=".55"/>
-                <path d="m39 17 4 3-5 1M39 35l4 1-3 3"/>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" focusable="false">
+                <path class="skill-icon-wash" d="M12 26C15 17 25 19 39 27C26 30 17 30 12 26Z" />
+                <path d="M12 26C15 17 25 19 39 27C26 30 17 30 12 26Z" />
+                <path d="M5 17C15 8 29 13 43 20M5 23C9 13 25 11 43 24M5 31C15 37 29 36 43 31M5 38C18 42 31 40 43 36"
+                  opacity=".55" />
+                <path d="m39 17 4 3-5 1M39 35l4 1-3 3" />
               </svg>
             </div>
             <h3 class="skill-name">CFD</h3>
             <ul class="skill-software-list">
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/openfoam.png" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/openfoam.png" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">OpenFOAM</span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/ansys.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/ansys.svg" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">ANSYS Fluent</span>
               </li>
             </ul>
@@ -242,22 +249,26 @@
           <!-- Toolkit Card 2: Programming -->
           <div class="skill-card glass-card reveal">
             <div class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <rect class="skill-icon-wash" x="6" y="8" width="36" height="32" rx="6"/>
-                <rect x="6" y="8" width="36" height="32" rx="6"/>
-                <path d="M6 17h36" opacity=".45"/>
-                <path d="m17 24-5 5 5 5m14-10 5 5-5 5m-5-12-4 14"/>
-                <path d="M12 12.5h.1m4 0h.1m4 0h.1" stroke-width="2.5" opacity=".65"/>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" focusable="false">
+                <rect class="skill-icon-wash" x="6" y="8" width="36" height="32" rx="6" />
+                <rect x="6" y="8" width="36" height="32" rx="6" />
+                <path d="M6 17h36" opacity=".45" />
+                <path d="m17 24-5 5 5 5m14-10 5 5-5 5m-5-12-4 14" />
+                <path d="M12 12.5h.1m4 0h.1m4 0h.1" stroke-width="2.5" opacity=".65" />
               </svg>
             </div>
             <h3 class="skill-name">Programming</h3>
             <ul class="skill-software-list">
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/python.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
-                <span class="skill-tool-label">Python<span class="skill-subtags">NumPy · Pandas · Matplotlib · DSA · OOP</span></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/python.svg" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-label">Python<span class="skill-subtags">NumPy · Pandas · Matplotlib · DSA ·
+                    OOP</span></span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/c.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/c.svg" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">C</span>
               </li>
             </ul>
@@ -266,24 +277,27 @@
           <!-- Toolkit Card 3: CAD -->
           <div class="skill-card glass-card reveal">
             <div class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="m7 34 17 10 17-10" opacity=".25"/>
-                <path class="skill-icon-wash" d="m24 5 16 9-16 9-16-9Z"/>
-                <path d="m8 14 16 9v17L8 31Z" fill="currentColor" fill-opacity=".06"/>
-                <path d="m24 23 16-9v17l-16 9Z" fill="currentColor" fill-opacity=".2"/>
-                <path d="m24 5 16 9v17l-16 9-16-9V14Zm-16 9 16 9 16-9M24 23v17"/>
-                <path d="m24 10 7 4-7 4-7-4Z"/>
-                <path d="m29 26 6-3.5v6L29 32Z" opacity=".65"/>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" focusable="false">
+                <path d="m7 34 17 10 17-10" opacity=".25" />
+                <path class="skill-icon-wash" d="m24 5 16 9-16 9-16-9Z" />
+                <path d="m8 14 16 9v17L8 31Z" fill="currentColor" fill-opacity=".06" />
+                <path d="m24 23 16-9v17l-16 9Z" fill="currentColor" fill-opacity=".2" />
+                <path d="m24 5 16 9v17l-16 9-16-9V14Zm-16 9 16 9 16-9M24 23v17" />
+                <path d="m24 10 7 4-7 4-7-4Z" />
+                <path d="m29 26 6-3.5v6L29 32Z" opacity=".65" />
               </svg>
             </div>
             <h3 class="skill-name">CAD</h3>
             <ul class="skill-software-list">
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/dassaultsystemes.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/dassaultsystemes.svg" alt=""
+                    width="30" height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">SolidWorks</span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/dassaultsystemes.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/dassaultsystemes.svg" alt=""
+                    width="30" height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">CATIA V5</span>
               </li>
             </ul>
@@ -292,11 +306,16 @@
           <!-- Toolkit Card 4: ML Basics -->
           <div class="skill-card glass-card reveal">
             <div class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="m11 12 13 4-13 20m0-24 13 20-13 4m0-12 13-8 13 8-13 8-13-8m13-8v16" opacity=".5"/>
-                <circle class="skill-icon-wash" cx="37" cy="24" r="7"/>
-                <circle cx="11" cy="12" r="3"/><circle cx="11" cy="24" r="3"/><circle cx="11" cy="36" r="3"/>
-                <circle cx="24" cy="16" r="3"/><circle cx="24" cy="32" r="3"/><circle cx="37" cy="24" r="4"/>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" focusable="false">
+                <path d="m11 12 13 4-13 20m0-24 13 20-13 4m0-12 13-8 13 8-13 8-13-8m13-8v16" opacity=".5" />
+                <circle class="skill-icon-wash" cx="37" cy="24" r="7" />
+                <circle cx="11" cy="12" r="3" />
+                <circle cx="11" cy="24" r="3" />
+                <circle cx="11" cy="36" r="3" />
+                <circle cx="24" cy="16" r="3" />
+                <circle cx="24" cy="32" r="3" />
+                <circle cx="37" cy="24" r="4" />
               </svg>
             </div>
             <h3 class="skill-name">ML Basics</h3>
@@ -305,29 +324,37 @@
           <!-- Toolkit Card 5: Aerospace Tools -->
           <div class="skill-card glass-card reveal">
             <div class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="M24 4c-2 3-3 8-3 14L6 31v3l14-5v6l-5 6v2l9-3 9 3v-2l-5-6v-6l14 5v-3L27 18c0-6-1-11-3-14Z" fill="currentColor" fill-opacity=".1"/>
-                <path d="m27 18 15 13v3l-14-5v6l5 6v2l-9-3V4c2 3 3 8 3 14Z" fill="currentColor" fill-opacity=".14" stroke="none"/>
-                <path d="M24 11c-1.2 2-1.5 4.5-1.5 7h3c0-2.5-.3-5-1.5-7Z" fill="currentColor" fill-opacity=".5" stroke="none"/>
-                <path d="M24 22v12m-4-5 1-6m7 6-1-6" opacity=".55"/>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" focusable="false">
+                <path d="M24 4c-2 3-3 8-3 14L6 31v3l14-5v6l-5 6v2l9-3 9 3v-2l-5-6v-6l14 5v-3L27 18c0-6-1-11-3-14Z"
+                  fill="currentColor" fill-opacity=".1" />
+                <path d="m27 18 15 13v3l-14-5v6l5 6v2l-9-3V4c2 3 3 8 3 14Z" fill="currentColor" fill-opacity=".14"
+                  stroke="none" />
+                <path d="M24 11c-1.2 2-1.5 4.5-1.5 7h3c0-2.5-.3-5-1.5-7Z" fill="currentColor" fill-opacity=".5"
+                  stroke="none" />
+                <path d="M24 22v12m-4-5 1-6m7 6-1-6" opacity=".55" />
               </svg>
             </div>
             <h3 class="skill-name">Aerospace Tools</h3>
             <ul class="skill-software-list">
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/xplane.png" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/xplane.png" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">X-Plane<span class="skill-subtags">+ Plane Maker</span></span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/xflr5.png" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/xflr5.png" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">XFLR5</span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/openvsp.png" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/openvsp.png" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">OpenVSP</span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/xfoil.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/xfoil.svg" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">Xfoil</span>
               </li>
             </ul>
@@ -336,22 +363,25 @@
           <!-- Toolkit Card 6: Others -->
           <div class="skill-card glass-card reveal">
             <div class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <rect class="skill-icon-wash" x="8" y="7" width="27" height="33" rx="5"/>
-                <path d="M35 15h5v25a4 4 0 0 1-4 4H17v-4" opacity=".5"/>
-                <rect x="8" y="7" width="27" height="33" rx="5"/>
-                <path d="M15 29h13m-13 5h9" opacity=".55"/>
-                <path d="M18 15h-4v8h4m7-8h4v8h-4m-3-9-3 10"/>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" focusable="false">
+                <rect class="skill-icon-wash" x="8" y="7" width="27" height="33" rx="5" />
+                <path d="M35 15h5v25a4 4 0 0 1-4 4H17v-4" opacity=".5" />
+                <rect x="8" y="7" width="27" height="33" rx="5" />
+                <path d="M15 29h13m-13 5h9" opacity=".55" />
+                <path d="M18 15h-4v8h4m7-8h4v8h-4m-3-9-3 10" />
               </svg>
             </div>
             <h3 class="skill-name">Others</h3>
             <ul class="skill-software-list">
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/latex.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/latex.svg" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">LaTeX</span>
               </li>
               <li>
-                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/office.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span>
+                <span class="skill-tool-logo" aria-hidden="true"><img src="images/skills/office.svg" alt="" width="30"
+                    height="30" loading="lazy" decoding="async"></span>
                 <span class="skill-tool-label">MS Office</span>
               </li>
             </ul>
@@ -448,44 +478,14 @@
                 <span class="project-tag">X-Plane</span>
               </div>
               <p class="project-desc">
-                A 1:14 Piper PA-38 model: scaled in CAD, checked in simulation, then laser-cut and assembled from plywood.
+                A 1:14 Piper PA-38 model: scaled in CAD, checked in simulation, then laser-cut and assembled from
+                plywood.
               </p>
               <a class="btn-project-detail" href="projects/aircraft-manufacturing.html">View Details</a>
             </div>
           </div>
 
-          <!-- Project 4: Micropad — custom Bluetooth keyboard -->
-          <div class="project-card glass-card reveal">
-            <div class="project-image-wrapper">
-              <img src="images/projects/micropad.jpg" alt="Micropad" class="project-image-photo" loading="lazy"
-                onerror="this.style.display='none'">
-              <div class="project-image-placeholder"
-                style="background: linear-gradient(135deg, #0d1a0d 0%, #182818 40%, #0a160a 100%);">
-                <svg viewBox="0 0 80 60" width="50" height="38">
-                  <rect x="20" y="15" width="40" height="30" rx="4" fill="none" stroke="rgba(120,220,120,0.6)"
-                    stroke-width="1.5" />
-                  <path d="M28 24h5m7 0h5m7 0h1M28 31h5m7 0h5m7 0h1M28 38h25" fill="none"
-                    stroke="rgba(120,220,120,0.6)" stroke-width="3" stroke-linecap="round" />
-                </svg>
-                <span class="project-img-label">Micropad</span>
-              </div>
-            </div>
-            <div class="project-info">
-              <h3 class="project-title">Micropad</h3>
-              <div class="project-tags">
-                <span class="project-tag">ESP32</span>
-                <span class="project-tag">Bluetooth</span>
-                <span class="project-tag">Arduino IDE</span>
-                <span class="project-tag">Rotary Encoder</span>
-              </div>
-              <p class="project-desc">
-                Six-key Bluetooth micropad with red switches, a rotary control, a custom PCB and a 3D-printed case.
-              </p>
-              <a class="btn-project-detail" href="projects/micropad.html">View Details</a>
-            </div>
-          </div>
-
-          <!-- Project 5: DBF -->
+          <!-- Project 4: DBF -->
           <div class="project-card glass-card reveal">
             <div class="project-image-wrapper">
               <img src="images/projects/dbf.jpg" alt="DBF" class="project-image-photo" loading="lazy"
@@ -511,6 +511,58 @@
                 competition. Full write-up in progress.
               </p>
               <a class="btn-project-detail" href="projects/dbf.html">View Details</a>
+            </div>
+          </div>
+
+          <!-- Project 5: Samsung Innovation Campus capstone -->
+          <div class="project-card glass-card reveal">
+            <div class="project-image-wrapper">
+              <img src="projects/images/sic/swarm-hero.svg"
+                alt="Illustration of formation and obstacle-navigation modes in a drone swarm simulation"
+                class="project-image-photo" loading="lazy">
+              <div class="project-image-placeholder" style="background: linear-gradient(135deg, #112941, #0a0e17);">
+                <span class="project-img-label">SIC · Drone Swarm</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Drone Swarm Simulation</h3>
+              <div class="project-tags">
+                <span class="project-tag">Samsung Innovation Campus</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">NumPy</span>
+                <span class="project-tag">Matplotlib</span>
+              </div>
+              <p class="project-desc">A team capstone exploring pattern formation and obstacle navigation in a
+                configurable 3D Python simulator.</p>
+              <a class="btn-project-detail" href="projects/drone-swarm-simulation.html">View Details</a>
+            </div>
+          </div>
+
+          <!-- Project 6: Other Projects -->
+          <div class="project-card glass-card reveal">
+            <div class="project-image-wrapper">
+              <div class="project-image-placeholder"
+                style="background: linear-gradient(135deg, #10243b 0%, #19243a 50%, #101725 100%);">
+                <svg viewBox="0 0 80 60" width="60" height="45" fill="none" stroke="rgba(77,171,247,0.7)"
+                  stroke-width="1.5" aria-hidden="true">
+                  <rect x="14" y="7" width="22" height="19" rx="3" />
+                  <rect x="44" y="7" width="22" height="19" rx="3" />
+                  <rect x="14" y="34" width="22" height="19" rx="3" />
+                  <path d="M55 36v15m-7.5-7.5h15" />
+                </svg>
+                <span class="project-img-label">Small builds &amp; experiments</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Other Projects</h3>
+              <div class="project-tags">
+                <span class="project-tag">Electronics</span>
+                <span class="project-tag">Models</span>
+                <span class="project-tag">Experiments</span>
+              </div>
+              <p class="project-desc">Micropad, Smoke Tunnel, RC Boat, Glider and a stationary F-35 model: a collection
+                of smaller builds and experiments.</p>
+              <a class="btn-project-detail" href="projects/others.html">Explore Projects</a>
             </div>
           </div>
 
@@ -561,11 +613,11 @@
             <div class="timeline-dot"></div>
             <div class="timeline-content glass-card">
               <span class="timeline-date">2023 - 2025</span>
-              <h3 class="timeline-title">Continuous Learning & Certifications</h3>
+              <h3 class="timeline-title">Continuous Learning</h3>
               <p class="timeline-subtitle">Network Academy, Coursera & Samsung Innovation Campus</p>
-              <p class="timeline-desc">Built up foundational and applied skills through Network Academy's Python
-                Essentials 1 & 2 and Networking Basics, Coursera's Machine Learning Specialization, and Samsung
-                Innovation Campus's Coding and Programming certification.</p>
+              <p class="timeline-desc">Built foundational and applied skills through Network Academy's Python
+                Essentials 1 & 2 and Networking Basics, Coursera's Machine Learning Specialization, and the Samsung
+                Innovation Campus programming course, where our team built a drone-swarm simulation capstone.</p>
             </div>
           </div>
 
@@ -608,30 +660,42 @@
           <div class="section-divider"></div>
         </div>
         <div class="certifications-grid">
-          <div class="cert-card glass-card reveal">
+          <a class="cert-card cert-card-link glass-card reveal"
+            href="resume/certificates/Python_Essentials_2_certificate_anupbajgain99-gmail-com_d2253e8c-df48-4330-998e-b541421f3b4a.pdf"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="View Python Essentials 2 certificate (opens in a new tab)">
             <div class="cert-icon">
               <i class="fa-brands fa-python"></i>
             </div>
-            <h3 class="cert-title">Python Essentials 1 & 2</h3>
-            <p class="cert-issuer">Network Academy</p>
+            <h3 class="cert-title">Python Essentials 2</h3>
+            <p class="cert-issuer">Cisco Networking Academy</p>
             <span class="cert-date">2023</span>
-          </div>
-          <div class="cert-card glass-card reveal">
+            <span class="cert-view">View certificate ↗</span>
+          </a>
+          <a class="cert-card cert-card-link glass-card reveal"
+            href="resume/certificates/Networking_Basics_certificate_anupbajgain99-gmail-com_4ab4d348-74d5-4230-af3c-92fa0b0d40aa.pdf"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="View Networking Basics certificate (opens in a new tab)">
             <div class="cert-icon">
               <i class="fa-solid fa-network-wired"></i>
             </div>
             <h3 class="cert-title">Networking Basics</h3>
-            <p class="cert-issuer">Network Academy</p>
+            <p class="cert-issuer">Cisco Networking Academy</p>
             <span class="cert-date">2023</span>
-          </div>
-          <div class="cert-card glass-card reveal">
+            <span class="cert-view">View certificate ↗</span>
+          </a>
+          <a class="cert-card cert-card-link glass-card reveal"
+            href="https://coursera.org/share/3af7cf782f6516bed6c5551437a4bed2" target="_blank" rel="noopener noreferrer"
+            aria-label="View Machine Learning Specialization certificate on Coursera (opens in a new tab)">
             <div class="cert-icon">
               <i class="fa-solid fa-brain"></i>
             </div>
             <h3 class="cert-title">Machine Learning Specialization</h3>
             <p class="cert-issuer">Coursera</p>
             <span class="cert-date">2024</span>
-          </div>
+            <span class="cert-view">View certificate ↗</span>
+
+          </a>
           <div class="cert-card glass-card reveal">
             <div class="cert-icon">
               <i class="fa-solid fa-laptop-code"></i>
@@ -641,6 +705,7 @@
             <span class="cert-date">2025</span>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -696,14 +761,17 @@
             action="https://formsubmit.co/anupbajgain999@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="New portfolio contact — anupbajgain.com.np">
             <input type="hidden" name="_template" value="table">
-            <input type="text" name="_honey" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="text" name="_honey" class="contact-honeypot" tabindex="-1" autocomplete="off"
+              aria-hidden="true">
             <div class="form-group">
               <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" maxlength="150" required>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" maxlength="150"
+                required>
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" maxlength="254" required>
+              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email"
+                maxlength="254" required>
             </div>
             <div class="form-group">
               <label for="subject">Subject</label>
@@ -773,6 +841,8 @@
 
   <!-- ==================== SCRIPTS ==================== -->
   <script src="js/script.js"></script>
+  <script type="module" src="js/flight-lab.js"></script>
+  <script type="module" src="js/flight-transition.js"></script>
 </body>
 
 </html>

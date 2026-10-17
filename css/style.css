@@ -1018,6 +1018,23 @@ body.light-theme .sun-icon {
   text-align: center;
   overflow: hidden;
 }
+.cert-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cert-card-link:hover .cert-view,
+.cert-card-link:focus-visible .cert-view {
+  text-decoration: underline;
+}
+.cert-view {
+  display: block;
+  margin-top: 12px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
 .cert-card.tilt-fallback {
   transition: transform 0.3s;
 }

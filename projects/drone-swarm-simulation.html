@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="A Python 3D drone-swarm simulator built as a Samsung Innovation Campus capstone, exploring pattern formation and obstacle navigation.">
+  <title>Drone Swarm Simulation | Anup Bajgain</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234dabf7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='2'/%3E%3Ccircle cx='4' cy='5' r='2'/%3E%3Ccircle cx='20' cy='5' r='2'/%3E%3Ccircle cx='4' cy='19' r='2'/%3E%3Ccircle cx='20' cy='19' r='2'/%3E%3Cpath d='M5.5 6.5 10.5 10.5m3 0 5-4m-13 11 5-4m3 0 5 4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/sic-swarm.css">
+  <link rel="stylesheet" href="../css/flight-transition.css">
+  <script src="../js/flight-transition-boot.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#overview">Skip to project</a>
+  <header class="site-bar">
+    <a class="project-back-link" href="../index.html#projects">← Back to Portfolio</a>
+    <nav aria-label="Project navigation"><a href="#brief">Brief</a><a href="#architecture">Approach</a><a
+        href="#modes">Simulation</a><a href="#findings">Results</a><a href="#team">Team</a></nav>
+  </header>
+  <main id="overview">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy"><span class="eyebrow"><span class="status-dot"></span> Samsung Innovation Campus / Team
+          capstone</span>
+        <h1 id="title">A swarm of simple decisions<span class="period">.</span></h1>
+        <p class="hero-lead">A Python simulator for exploring how virtual drones arrange themselves and navigate
+          obstacles.</p>
+        <p class="hero-detail">We built an interactive 3D environment with two modes: move agents into geometric
+          patterns, or guide them toward a goal through a field of pillars.</p>
+        <div class="hero-actions"><a class="button primary" href="#brief">Explore the project <span
+              aria-hidden="true">↘</span></a><a class="button secondary" href="reports/drone-swarm-simulation-report.pdf"
+            download>Download report <span aria-hidden="true">↓</span></a></div>
+      </div>
+      <figure class="hero-visual"><img src="images/sic/swarm-hero.svg"
+          alt="Illustration of a 20-agent ring formation and a swarm navigating a field of pillars" width="1280"
+          height="760" fetchpriority="high">
+        <figcaption>Illustration of the two simulation modes · simulation replay below</figcaption>
+      </figure>
+    </section>
+    <div class="fact-strip" aria-label="Project at a glance">
+      <div><span>Environment</span><strong>3D</strong><small>desktop simulation</small></div>
+      <div><span>Scenarios</span><strong>2</strong><small>formation and navigation</small></div>
+      <div><span>Formation targets</span><strong>7</strong><small>available shapes</small></div>
+      <div><span>Example swarm</span><strong>20</strong><small>agents in the screenshots</small></div>
+    </div>
+
+    <section class="chapter" id="brief" aria-labelledby="brief-title">
+      <div class="chapter-aside"><span>01 / THE BRIEF</span><i></i></div>
+      <div class="chapter-body">
+        <p class="kicker">A course project with an aerospace question</p>
+        <h2 id="brief-title">What can we learn from a group of small agents?</h2>
+        <p>The Samsung Innovation Campus programming course gave us a chance to build something beyond individual Python
+          exercises. Our capstone explored a simplified multi-agent problem: how to coordinate a group of virtual drones
+          without scripting every movement by hand.</p>
+        <p>The work is a software simulation. It does not represent a flight test, a validated aircraft controller or
+          autonomous operation of physical drones.</p>
+        <div class="brief-grid">
+          <div><b>Formation</b>
+            <p>Assign points in a line, circle, square, star, triangle, “1” or “S” and watch agents move toward them.
+            </p>
+          </div>
+          <div><b>Navigation</b>
+            <p>Move from a start region toward an end region while responding to other agents and cylindrical obstacles.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="architecture" aria-labelledby="architecture-title">
+      <div class="chapter-aside"><span>02 / THE APPROACH</span><i></i></div>
+      <div class="chapter-body">
+        <p class="kicker">Objects, controls and a visible world</p>
+        <h2 id="architecture-title">A small simulation built from clear parts.</h2>
+        <p>The Python implementation separates individual agent state, swarm-level setup, obstacle geometry and the
+          desktop interface. NumPy handles vector calculations; Tkinter and Matplotlib provide controls and a live 3D
+          plot.</p>
+        <div class="architecture-grid">
+          <div><span>01 / Drone</span>
+            <h3>Local motion</h3>
+            <p>Tracks position, velocity and target. A PD-style force moves each agent toward its assigned formation
+              point.</p>
+          </div>
+          <div><span>02 / Swarm</span>
+            <h3>Shared scenario</h3>
+            <p>Creates agents, assigns pattern targets and manages the obstacle field, run timing and outcomes.</p>
+          </div>
+          <div><span>03 / Pillar</span>
+            <h3>Static obstacles</h3>
+            <p>Represents each cylindrical obstruction and supplies its size and position for avoidance checks.</p>
+          </div>
+          <div><span>04 / Interface</span>
+            <h3>Live controls</h3>
+            <p>Lets a user select modes and patterns, change the agent count, adjust PID gains and control simulation
+              speed.</p>
+          </div>
+        </div>
+        <div class="control-note"><strong>Two control paths</strong>
+          <p>Pattern mode uses target tracking plus local repulsion. Navigation mode uses PID goal seeking plus
+            repulsion from nearby drones and pillars. The display updates as the agents move.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="modes" aria-labelledby="modes-title">
+      <div class="chapter-aside"><span>03 / THE SIMULATION</span><i></i></div>
+      <div class="chapter-body">
+        <p class="kicker">Two ways to observe the same swarm</p>
+        <h2 id="modes-title">Shape the group. Then give it a route.</h2>
+        <div class="mode-block">
+          <div class="mode-intro"><span class="mode-number">A / PATTERN FORMATION</span>
+            <h3>From scattered points to a shared shape.</h3>
+            <p>Each agent receives a target in the selected formation. The update loop applies a proportional–derivative
+              tracking force and short-range repulsion so the dots move toward the pattern while responding to near
+              neighbours.</p>
+          </div>
+          <figure><img src="images/sic/pattern-replay.png"
+              alt="Full-frame top view of a simulated 20-agent circle formation, with the assigned target positions shown as rings"
+              width="1600" height="900" loading="lazy">
+            <figcaption>Circle formation after 20 seconds · rendered from the project’s simulation code</figcaption>
+          </figure>
+        </div>
+        <div class="mode-block">
+          <div class="mode-intro"><span class="mode-number">B / OBSTACLE NAVIGATION</span>
+            <h3>A destination beyond a field of pillars.</h3>
+            <p>Agents begin in a start box and head toward an end box. The simulation combines a tunable PID goal force
+              with local repulsion. The GUI can report how many agents reached the destination, how many were eliminated
+              and their average arrival time.</p>
+          </div>
+          <figure><img src="images/sic/obstacle-replay.png"
+              alt="Full-frame top view of simulated drones moving between pillar obstacles from a start area toward a goal"
+              width="1600" height="900" loading="lazy">
+            <figcaption>Obstacle navigation at 12 seconds · rendered from the project’s simulation code</figcaption>
+          </figure>
+        </div>
+        <figure class="simulation-viewer">
+          <div class="viewer-stage">
+            <img id="swarm-viewer-poster" src="images/sic/simulation-poster.png"
+              alt="Angled 3D view of the drone swarm navigating pillars" width="1600" height="900" loading="lazy">
+            <canvas id="swarm-viewer" hidden tabindex="0"
+              aria-label="Interactive 3D replay of the drone swarm. Drag to orbit, scroll to zoom, or use arrow and plus or minus keys."></canvas>
+            <div class="viewer-hud" id="swarm-viewer-hud" hidden aria-live="off"><span id="swarm-viewer-mode">Circle
+                formation</span><span id="swarm-viewer-time">Simulation time 0.0 s</span></div>
+          </div>
+          <div class="viewer-controls" id="swarm-viewer-controls" hidden><span>Drag to orbit · Scroll to zoom · Arrow
+              keys also work</span>
+            <div><button id="swarm-viewer-play" type="button">Pause replay</button><button id="swarm-viewer-reset"
+                type="button">Reset view</button></div>
+          </div>
+          <figcaption>Orbit the same formation and obstacle runs from the project’s Python simulation. Viewing angle and
+            zoom are interactive; the drones’ paths stay fixed.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="chapter" id="findings" aria-labelledby="findings-title">
+      <div class="chapter-aside"><span>04 / WHAT WE FOUND</span><i></i></div>
+      <div class="chapter-body">
+        <p class="kicker">A working learning environment</p>
+        <h2 id="findings-title">The useful result was a system we could inspect and change.</h2>
+        <p>The project produced a selectable set of formations, a configurable obstacle scenario and a 3D view that
+          makes the agents' motion visible. Its run summary records outcomes for a chosen obstacle scenario; the project
+          files do not establish a single general success rate.</p>
+        <div class="finding-grid">
+          <div><strong>Pattern targets</strong>
+            <p>Seven shapes give the team different ways to observe how assignment and tracking affect group motion.</p>
+          </div>
+          <div><strong>Obstacle runs</strong>
+            <p>Start and end regions, static pillars and configurable gains make the navigation mode repeatable in the
+              interface.</p>
+          </div>
+          <div><strong>Room to improve</strong>
+            <p>The code calculates cohesion and alignment terms, but its current motion update uses repulsion without
+              adding those terms. Integrating them and comparing runs would be a useful next iteration.</p>
+          </div>
+        </div>
+        <p class="scope-note">This is a software demonstration of control and swarm concepts. It does not include
+          physical drone tests or quantitative validation against real flight data.</p>
+      </div>
+    </section>
+
+    <section class="closing" id="team">
+      <div><span class="kicker">The team</span>
+        <h2>Built together during Samsung Innovation Campus.</h2>
+        <p>Capstone project by Anup Bajgain, Madhusudan Pun and Toran Bahadur Niroula, prepared in May 2025. The work
+          brought Python programming, object-oriented design, numerical calculations and visualization into one shared
+          project.</p>
+        <div class="tool-list" aria-label="Project tools">
+          <span>Python</span><span>NumPy</span><span>Tkinter</span><span>Matplotlib</span></div>
+      </div><a class="button secondary" href="../index.html#projects">Back to portfolio <span
+          aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand" href="../index.html#home">ANUP <span>BAJGAIN</span></a><span>Drone Swarm
+      Simulation · Samsung Innovation Campus</span><a href="../index.html#projects">Back to portfolio ↑</a></footer>
+  <script defer src="../js/sic-swarm-data.js"></script>
+  <script defer src="../js/sic-swarm-viewer.js"></script>
+  <script type="module" src="../js/flight-transition.js"></script>
+</body>
+
+</html>

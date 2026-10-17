@@ -1,0 +1,45 @@
+{
+  "description": "Original generic twin-engine narrow-body airliner; display mesh, not an exact aircraft or printable solid.",
+  "units": "metres",
+  "surfaces": {
+    "horizontal_tail": {
+      "root_span": 0.0,
+      "tip_span": 6.6,
+      "root_lead": -13.8,
+      "sweep": 3.6,
+      "root_chord": 4.8,
+      "tip_chord": 1.5,
+      "root_z": 0.58,
+      "tip_z": 1.18,
+      "thickness": 0.09,
+      "incidence": -1.2
+    }
+  },
+  "groups": [
+    {
+      "material": "airframe",
+      "start": 0,
+      "count": 114120
+    },
+    {
+      "material": "rim",
+      "start": 114120,
+      "count": 2304
+    },
+    {
+      "material": "intake",
+      "start": 116424,
+      "count": 2880
+    },
+    {
+      "material": "fan",
+      "start": 119304,
+      "count": 288
+    },
+    {
+      "material": "glass",
+      "start": 119592,
+      "count": 5616
+    }
+  ]
+}

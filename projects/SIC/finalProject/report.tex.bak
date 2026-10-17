@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\bfseries}{\thesubsection}{1em}{}
+
+\definecolor{titlecolor}{RGB}{50, 100, 150}
+\definecolor{sectioncolor}{RGB}{70, 130, 180}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\begin{document}
+
+% Title page
+\begin{center}
+    {\color{titlecolor}\LARGE\textbf{Adaptive Drone Swarm Behavior Simulation: Project Report}\\[0.5cm]
+    
+    \textbf{Authors:} Anup Baigain, Madhusudan Pun, Toran Bahadur Niroula\\[0.3cm]
+    \textbf{Date:} May 8, 2025\\[1cm]
+\end{center}
+\noindent\large\textbf{Abstract}\\
+This project presents the development of a 3D drone swarm simulation using Python, designed to replicate emergent behaviors inspired by natural swarm intelligence. The simulation incorporates key behavioral algorithms, including alignment, cohesion, separation, obstacle avoidance, and dynamic pattern formation, allowing drones to navigate complex environments collaboratively. Implemented using object-oriented programming and visualized with \texttt{matplotlib} in a 3D space, the system enables intuitive observation of swarm dynamics. The modular design supports expansion into more advanced features such as reinforcement learning and role-based tasking. This work serves as both a demonstration of core Python programming skills acquired through the Samsung Innovation Campus and a foundation for future research in multi-agent systems and autonomous aerial robotics.
+
+
+\section{Introduction}
+This project delivers a modular simulation environment in Python to model and visualize adaptive drone swarm behaviors inspired by biological systems. The simulation demonstrates emergent behaviors such as cohesion, alignment, separation, obstacle avoidance, and dynamic pattern formation, aiming to bridge the gap between theoretical swarm algorithms and practical implementation in complex environments\cite{ref1}.
+
+\section{Project Objectives and Scope}
+\textbf{Core Objectives:}
+\begin{itemize}
+    \item Develop a modular simulation platform for drone swarms.
+    \item Implement fundamental swarm behaviors: cohesion, alignment, and separation.
+    \item Design adaptive collision avoidance.
+    \item Enable dynamic pattern formation (circle, grid, triangle, etc.).
+    \item Extend to 3D simulation and explore reinforcement learning for adaptability (as time allows)\cite{ref1}.
+\end{itemize}
+
+\textbf{Scope \& Deliverables:}
+\begin{itemize}
+    \item Physics-based drone movement and collision detection.
+    \item Swarm intelligence algorithms (cohesion, alignment, separation).
+    \item Obstacle avoidance for both static (pillars) and dynamic (other drones) obstacles.
+    \item User-selectable pattern formations.
+    \item Visualization and interactive GUI.
+    \item Technical documentation and performance analysis\cite{ref1}.
+\end{itemize}
+
+
+\section{Software Architecture Overview}
+The system is organized into several key modules:
+
+\begin{itemize}
+    \item \textbf{Physics Engine:} Simulates drone kinematics, velocity, and collision detection.
+    \item \textbf{Swarm Behavior Module:} Implements Boids-inspired rules for cohesion, alignment, and separation, as well as PID-based goal seeking and obstacle avoidance.
+    \item \textbf{Visualization System:} Uses Tkinter and Matplotlib for real-time 3D visualization and interactive controls.
+    \item \textbf{Scenario Manager:} Configures start/end zones, obstacles (pillars), and pattern targets.
+\end{itemize}
+
+\section{Implementation Details}
+\subsection{Core Classes}
+\begin{itemize}
+    \item \textbf{Pillar:} Represents cylindrical obstacles in the simulation space, supporting collision checks\cite{ref2}.
+    \item \textbf{Drone:} Models individual drones with position, velocity, and behavior logic, including:
+    \begin{itemize}
+        \item Pattern Formation: Uses PD control to move drones into geometric patterns (circle, line, square, star, triangle, etc.).
+        \item Obstacle Avoidance: Combines PID control for goal seeking with Boids rules for inter-drone avoidance and obstacle repulsion.
+    \end{itemize}
+    \item \textbf{Swarm:} Manages the collection of drones, scenario setup, pattern assignment, and simulation updates.
+    \item \textbf{SimulatorGUI:} Provides an interactive GUI for mode switching (pattern formation/obstacle avoidance), parameter tuning, and real-time visualization\cite{ref2}.
+\end{itemize}
+
+\subsection{Swarm Behaviors}
+\begin{itemize}
+    \item \textbf{Cohesion:} Drones steer toward the average position of neighbors.
+    \item \textbf{Alignment:} Drones align their velocity with nearby drones.
+    \item \textbf{Separation:} Drones maintain a minimum distance to avoid collisions.
+    \begin{minted}[
+  fontsize=\small,
+  bgcolor=gray!10,
+  linenos,
+  breaklines,
+  frame=lines,
+  framesep=2mm
+]{python}
+def calculate_avoidance_force(self, swarm, obstacles):
+    avoidance_force = np.array([0.0, 0.0, 0.0])
+    swarm_center = np.zeros(3)
+    neighbor_count = 0
+    
+    # Boids implementation
+    for other_drone in swarm.drones:
+        dist = np.linalg.norm(self.position - other_drone.position)
+        if dist < self.avoidance_radius:
+            swarm_center += other_drone.position
+            neighbor_count += 1
+            avoidance_force += (self.position - other_drone.position)/dist**2  # Separation
+            
+    if neighbor_count > 0:
+        cohesion_force = (swarm_center/neighbor_count - self.position) * 0.1  # Cohesion
+        alignment_force = (np.mean([d.velocity for d in neighbors], axis=0) - self.velocity) * 0.1  # Alignment
+
+\end{minted}
+    \item \textbf{Obstacle Avoidance:} Drones detect and avoid pillars and other drones using repulsion forces and PID control.
+\end{itemize}
+
+\newpage
+
+\begin{itemize}
+    \item \textbf{Pattern Formation:} Drones can arrange themselves into user-selected formations, with smooth transitions between patterns\cite{ref2,ref1}.
+\end{itemize}
+
+\subsubsection{User Interaction}
+\begin{itemize}
+    \item Switch between "Pattern Formation" and "Obstacle Avoidance" modes.
+    \item Select pattern type and number of drones.
+    \item Adjust PID controller gains and simulation speed.
+    \item Start, stop, and reset simulations with real-time feedback and results display\cite{ref2}.
+\end{itemize}
+
+\section{Results and Features}
+\begin{itemize}
+    \item \textbf{Emergent Swarm Behavior:} The simulation demonstrates realistic flocking, pattern formation, and adaptive navigation through obstacle fields.
+    \item \textbf{3D Visualization:} Real-time 3D plotting of drones, obstacles, and start/end zones.
+    \item \textbf{Performance Metrics:} Tracks success rates, elimination counts, and average times for drones reaching goals.
+    \item \textbf{Extensibility:} Modular codebase supports future integration of advanced features like leader election, adaptive formation switching, and reinforcement learning\cite{ref1}.
+\end{itemize}
+
+\section{Conclusion}
+The project successfully meets its core objectives by providing a robust, interactive, and extensible platform for simulating and analyzing drone swarm behaviors. The implementation closely follows the proposed architecture and fulfills the planned deliverables, serving as a valuable tool for research and demonstration of multi-agent systems and swarm intelligence\cite{ref1,ref2}.
+
+\begin{thebibliography}{9}
+\bibitem{ref1} 
+Project internal documentation and implementation notes.
+
+\bibitem{ref2} 
+Swarm intelligence literature and Boids algorithm references.
+\end{thebibliography}
+
+\end{document}
