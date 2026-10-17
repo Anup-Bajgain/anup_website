@@ -3,7 +3,6 @@ import { loadAirliner } from './airliner-model.js';
 import { createAirflowPaths } from './flight-flow.js';
 
 const canvas = document.getElementById('flightCanvas');
-const pause = document.getElementById('flightPause');
 const fallback = document.getElementById('flightFallback');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 let renderer;
@@ -12,13 +11,11 @@ try {
 } catch (error) {
   fallback.hidden = false;
   canvas.hidden = true;
-  pause.hidden = true;
 }
 if (renderer) start().catch(error => {
   console.error('Aircraft scene could not load:', error);
   fallback.hidden = false;
   canvas.hidden = true;
-  pause.hidden = true;
   renderer.dispose();
 });
 
@@ -111,9 +108,7 @@ async function start() {
   function tick(now){frame=0;time+=last?Math.min((now-last)/1000,.2):0;last=now;flowUniforms.uTime.value=time;render();schedule();}
   function sync(){
     cancelAnimationFrame(frame);frame=0;last=0;
-    pause.setAttribute('aria-label',paused?'Play airflow animation':'Pause airflow animation');
-    pause.setAttribute('aria-pressed',String(paused));
-    pause.firstElementChild.textContent=paused?'▷':'Ⅱ';render();schedule();
+    render();schedule();
   }
   function resize(){
     const {width,height}=canvas.getBoundingClientRect();if(!width||!height)return;
@@ -125,14 +120,13 @@ async function start() {
     const next=document.body.classList.contains('light-theme');if(next===light)return;
     light=next;flowUniforms.uLight.value=light?1:0;renderer.toneMappingExposure=light?1.05:1.25;render();
   }
-  pause.addEventListener('click',()=>{paused=!paused;sync();});
   reduced.addEventListener('change',()=>{paused=reduced.matches;sync();});
   document.addEventListener('visibilitychange',sync);
   new IntersectionObserver(([e])=>{visible=e.isIntersecting;sync();}).observe(canvas);
   new ResizeObserver(resize).observe(canvas);
   new MutationObserver(theme).observe(document.body,{attributes:true,attributeFilter:['class']});
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);frame=0;visible=false;fallback.hidden=false;pause.hidden=true;});
-  canvas.addEventListener('webglcontextrestored',()=>{visible=true;fallback.hidden=true;pause.hidden=false;sync();});
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();cancelAnimationFrame(frame);frame=0;visible=false;fallback.hidden=false;});
+  canvas.addEventListener('webglcontextrestored',()=>{visible=true;fallback.hidden=true;sync();});
   resize();theme();sync();
   canvas.dataset.ready='true';
 }
