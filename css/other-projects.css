@@ -11,3 +11,18 @@
 .collection-note { color: var(--text-secondary); font-size: .8rem; }
 .collection-shell a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 @media (max-width: 600px) { .collection-intro { padding-top: 48px; } }
+.collection-grid button.btn-project-detail { background: transparent; cursor: pointer; font-family: inherit; }
+body:has(.project-dialog[open]) { overflow: hidden; }
+.project-dialog { box-sizing: border-box; width: min(720px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: clamp(20px, 4vw, 32px); overflow-y: auto; border: 1px solid var(--glass-border); border-radius: 20px; background: #101725; color: var(--text-primary); box-shadow: 0 24px 80px #0008; }
+.project-dialog::backdrop { background: #050a12bf; backdrop-filter: blur(5px); }
+.project-dialog-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.project-dialog-header h2 { margin: 10px 0 16px; font-family: var(--font-primary); font-size: 2rem; }
+.project-dialog-close { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--glass-border); border-radius: 50%; background: transparent; color: var(--text-primary); font-size: 1.6rem; cursor: pointer; }
+.project-dialog-close:hover { color: var(--accent); border-color: var(--accent); }
+.project-dialog :focus-visible, .collection-grid button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-dialog > p { color: var(--text-secondary); line-height: 1.7; }
+.project-dialog-images { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.project-dialog-images figure { margin: 0; overflow: hidden; border: 1px solid var(--glass-border); border-radius: 12px; }
+.project-dialog-images img { display: block; width: 100%; height: auto; aspect-ratio: 1.6; object-fit: contain; background: #152236; }
+.project-dialog-images figcaption { padding: 10px 12px; color: var(--text-secondary); font-size: .78rem; }
+@media (max-width: 480px) { .project-dialog-images { grid-template-columns: 1fr; } }

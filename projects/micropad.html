@@ -3,70 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Micropad: a six-key ESP32 Bluetooth macropad with red mechanical switches, a custom PCB, rotary control and a 3D-printed enclosure.">
-  <title>Micropad | Anup Bajgain</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234dabf7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='3'/%3E%3Cpath d='M6 9h3m3 0h3M6 15h3m3 0h3'/%3E%3Ccircle cx='19' cy='12' r='2'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/micropad.css">
-  <link rel="stylesheet" href="../css/flight-transition.css">
-  <script src="../js/flight-transition-boot.js"></script>
+  <meta http-equiv="refresh" content="0; url=others.html#micropad">
+  <title>Micropad | Other Projects</title>
 </head>
 <body>
-  <a class="skip-link" href="#overview">Skip to project</a>
-  <header class="site-bar">
-    <a class="project-back-link" href="others.html#micropad">← Other Projects</a>
-    <nav aria-label="Project navigation"><a href="#overview">Overview</a><a href="#hardware">PCB</a><a href="#enclosure">Enclosure</a><a href="#firmware">Firmware</a><a href="#outcome">Build</a></nav>
-  </header>
-
-  <main>
-    <section class="hero" id="overview" aria-labelledby="project-title">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="signal-dot"></span> Personal electronics project</span>
-        <h1 id="project-title">Micropad<span class="period">.</span></h1>
-        <p class="hero-lead">A small wireless keyboard for the shortcuts I use every day.</p>
-        <p class="hero-detail">I brought an ESP32, six mechanical red-switch keys, a rotary encoder, a custom PCB and a 3D-printed case together in one Bluetooth input device.</p>
-        <a class="button primary" href="#hardware">See how it was built <span aria-hidden="true">↘</span></a>
-      </div>
-      <figure class="hero-visual"><img src="images/micropad/case-cad.png" alt="CAD render of the custom enclosure with six key openings and a rotary encoder opening" width="1600" height="1000" fetchpriority="high"><figcaption>Enclosure geometry rendered from my STL model</figcaption></figure>
-    </section>
-
-    <div class="fact-strip" aria-label="Micropad at a glance">
-      <div><span>Inputs</span><strong>6 <small>keys</small></strong><p>Mechanical red switches</p></div>
-      <div><span>Control</span><strong>1 <small>dial</small></strong><p>Rotary encoder with push switch</p></div>
-      <div><span>Connection</span><strong>BLE</strong><p>Wireless keyboard input</p></div>
-      <div><span>Firmware</span><strong>3 <small>modes</small></strong><p>Media, productivity, custom</p></div>
-    </div>
-
-    <section class="chapter" id="hardware" aria-labelledby="hardware-title"><div class="chapter-aside"><span>01 / THE PCB</span><i></i></div><div class="chapter-body">
-      <p class="kicker">Electronic design</p><h2 id="hardware-title">Six switches, one encoder, one board.</h2>
-      <p>I designed a PCB for the key switches and rotary control. The board layout shows two rows of three switch positions and the encoder footprint at one end. The project files include the PCB design, Gerbers and a board drawing for fabrication.</p>
-      <figure class="board-figure"><div class="board-frame"><img src="images/micropad/pcb-layout.png" alt="Micropad PCB drawing showing six switch positions in two rows, traces and a rotary encoder footprint" width="1280" height="515" loading="lazy"></div><figcaption>PCB layout from my board drawing · six keys and an encoder</figcaption></figure>
-      <div class="detail-grid"><div><span>01 / Switches</span><p>Mechanical red switches make the six main inputs tactile and compact.</p></div><div><span>02 / Controller</span><p>An ESP32 reads the inputs and sends Bluetooth keyboard commands to the paired computer.</p></div><div><span>03 / Encoder</span><p>Rotating the dial changes volume or moves left and right; pressing it switches between those behaviors.</p></div></div>
-    </div></section>
-
-    <section class="chapter" id="enclosure" aria-labelledby="enclosure-title"><div class="chapter-aside"><span>02 / THE CASE</span><i></i></div><div class="chapter-body">
-      <p class="kicker">Design for assembly</p><h2 id="enclosure-title">A case made around the controls.</h2>
-      <p>I modeled the casing to place six key openings beside the rotary encoder and to hold the electronics in a compact footprint. The enclosure has separate top and bottom parts, with a knob modeled for the encoder. I 3D-printed the case for the build.</p>
-      <div class="case-feature"><figure><img src="images/micropad/case-cad.png" alt="Isometric CAD render of the six-key Micropad enclosure" width="1600" height="1000" loading="lazy"><figcaption>Rendered from the Micropad enclosure STL · design view, not a product photo</figcaption></figure><div class="case-notes"><div><b>Six-key layout</b><p>Two rows of three openings follow the switch arrangement on the PCB.</p></div><div><b>Rotary opening</b><p>A dedicated opening gives the knob its own space beside the keys.</p></div><div><b>Printed parts</b><p>Top, bottom and knob models were prepared as STL files for fabrication.</p></div></div></div>
-    </div></section>
-
-    <section class="chapter" id="firmware" aria-labelledby="firmware-title"><div class="chapter-aside"><span>03 / FIRMWARE</span><i></i></div><div class="chapter-body">
-      <p class="kicker">Programmed in Arduino IDE</p><h2 id="firmware-title">One set of keys, three useful layouts.</h2>
-      <p>The ESP32 sketch uses Bluetooth Low Energy HID to act as a keyboard. A mode switch cycles through media controls, productivity shortcuts and a personal shortcut layer. The code also debounces button presses and reads the rotary encoder.</p>
-      <div class="mode-demo" aria-label="Micropad key map from the firmware">
-        <div class="mode-header"><div><span class="demo-label">Firmware key map</span><p>Choose a mode to see what the six keys send.</p></div><div class="mode-tabs" role="group" aria-label="Key map mode"><button type="button" class="active" data-mode="media" aria-pressed="true">Media</button><button type="button" data-mode="productivity" aria-pressed="false">Productivity</button><button type="button" data-mode="custom" aria-pressed="false">Custom</button></div></div>
-        <div class="device-map"><div class="device-keys"><div class="key"><small>01</small><span>Previous</span></div><div class="key"><small>02</small><span>Play / pause</span></div><div class="key"><small>03</small><span>Next</span></div><div class="key"><small>04</small><span>Mute</span></div><div class="key"><small>05</small><span>Switch app</span></div><div class="key"><small>06</small><span>Stop</span></div></div><div class="device-dial"><span class="dial-ring" aria-hidden="true"></span><b>Rotary</b><small>Volume / left-right</small></div></div>
-        <p class="demo-footnote">Illustration of the key mapping in the Arduino sketches, not a live device simulator.</p>
-      </div>
-      <div class="firmware-notes"><div><span>Wireless identity</span><strong>PROTON</strong><p>The Bluetooth device name defined in the sketch.</p></div><div><span>Firmware versions</span><strong>2 sketches</strong><p>The folder includes a regular version and a later version that explores a 10-minute inactivity timer for deep sleep.</p></div></div>
-    </div></section>
-
-    <section class="closing" id="outcome" aria-labelledby="outcome-title"><div><p class="kicker">The build</p><h2 id="outcome-title">A complete little input device, from layout to firmware.</h2><p>Micropad brought together the parts I wanted to learn by doing: PCB design, mechanical packaging, 3D printing and embedded programming. The finished device works as a wireless Bluetooth keyboard for quick controls and shortcuts.</p><div class="project-tags"><span>ESP32</span><span>Bluetooth HID</span><span>PCB Design</span><span>3D Printing</span><span>Arduino IDE</span></div></div><a class="button secondary" href="../index.html#projects">Back to portfolio <span aria-hidden="true">↗</span></a></section>
-  </main>
-  <footer class="site-footer"><a class="brand" href="../index.html#home">ANUP <span>BAJGAIN</span></a><span>Micropad · Personal electronics project</span><a href="../index.html#projects">Back to portfolio ↑</a></footer>
-  <script src="../js/micropad.js" defer></script>
-  <script type="module" src="../js/flight-transition.js"></script>
+  <p>Micropad is now in <a href="others.html#micropad">Other Projects</a>.</p>
 </body>
 </html>

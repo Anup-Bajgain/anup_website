@@ -32,8 +32,8 @@
         <div class="project-info">
           <h2 class="project-title">Micropad</h2>
           <div class="project-tags"><span class="project-tag">ESP32</span><span class="project-tag">Bluetooth</span><span class="project-tag">3D Printing</span></div>
-          <p class="project-desc">Six-key Bluetooth micropad with red switches, a rotary control, a custom PCB and a 3D-printed case.</p>
-          <a class="btn-project-detail" href="micropad.html">View Details</a>
+          <p class="project-desc">A six-key Bluetooth shortcut pad with a rotary dial and a custom printed case.</p>
+          <button class="btn-project-detail" type="button" data-project-dialog="micropad-details" aria-haspopup="dialog">View Details</button>
         </div>
       </article>
       <article class="project-card glass-card" id="smoke-tunnel">
@@ -54,7 +54,29 @@
       </article>
     </section>
   </main>
+  <dialog class="project-dialog" id="micropad-details" aria-labelledby="micropad-title" aria-describedby="micropad-summary">
+    <div class="project-dialog-header">
+      <div><p class="collection-eyebrow">Small builds &amp; experiments</p><h2 id="micropad-title">Micropad</h2></div>
+      <form method="dialog"><button class="project-dialog-close" aria-label="Close Micropad details" autofocus>&times;</button></form>
+    </div>
+    <p id="micropad-summary">A wireless shortcut pad built with an ESP32, six mechanical keys and a rotary encoder. I designed the PCB and 3D-printed enclosure, then programmed Bluetooth controls for media and everyday shortcuts.</p>
+    <div class="project-dialog-images">
+      <figure><img src="images/micropad/case-cad.png" alt="CAD render of the six-key enclosure with a rotary encoder opening" width="1600" height="1000" loading="lazy"><figcaption>3D-printed enclosure design</figcaption></figure>
+      <figure><img src="images/micropad/pcb-layout.png" alt="Custom PCB layout with six switch positions and a rotary encoder footprint" width="1280" height="515" loading="lazy"><figcaption>Custom PCB layout</figcaption></figure>
+    </div>
+    <div class="project-tags"><span class="project-tag">ESP32</span><span class="project-tag">Bluetooth HID</span><span class="project-tag">PCB Design</span><span class="project-tag">3D Printing</span></div>
+  </dialog>
   <footer class="footer"><div class="footer-container"><p class="footer-text">Other Projects · Anup Bajgain</p><a class="detail-back-link" href="../index.html#projects">Back to Portfolio ↑</a></div></footer>
+  <script>
+    document.querySelectorAll('[data-project-dialog]').forEach((button) => {
+      const dialog = document.getElementById(button.dataset.projectDialog);
+      button.addEventListener('click', () => dialog.showModal());
+      dialog.addEventListener('click', (event) => {
+        const bounds = dialog.getBoundingClientRect();
+        if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
+      });
+    });
+  </script>
   <script type="module" src="../js/flight-transition.js"></script>
 </body>
 </html>
